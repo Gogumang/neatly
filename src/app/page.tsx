@@ -1,16 +1,16 @@
 import Link from "next/link";
 import { sampleTalk } from "@/entities/talk/sample";
-import { getGalleryTalks } from "@/features/gallery/getGalleryTalks";
-import { TalkBrowser } from "@/features/gallery/TalkBrowser";
-import { Aurora } from "@/features/landing/Aurora";
-import { Converter } from "@/features/landing/Converter";
-import { Features } from "@/features/landing/Features";
-import hero from "@/features/landing/Hero.module.css";
-import { HeroTitle } from "@/features/landing/HeroTitle";
-import styles from "@/features/landing/Landing.module.css";
-import { SectionTitle } from "@/features/landing/SectionTitle";
-import { StatLine } from "@/features/landing/StatLine";
 import { ButtonLink } from "@/shared/ui/Button/Button";
+import { getGalleryTalks } from "@/widgets/gallery/getGalleryTalks";
+import { TalkBrowser } from "@/widgets/gallery/TalkBrowser";
+import { Aurora } from "@/widgets/landing/Aurora";
+import { Converter } from "@/widgets/landing/Converter";
+import { Features } from "@/widgets/landing/Features";
+import hero from "@/widgets/landing/Hero.module.css";
+import { HeroTitle } from "@/widgets/landing/HeroTitle";
+import styles from "@/widgets/landing/Landing.module.css";
+import { SectionTitle } from "@/widgets/landing/SectionTitle";
+import { StatLine } from "@/widgets/landing/StatLine";
 
 export default async function Home() {
   const talks = await getGalleryTalks();

@@ -3,14 +3,14 @@ import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { sampleTalk } from "@/entities/talk/sample";
 import { isLocked } from "@/entities/talk/visibility";
-import { TalkLock } from "@/features/lock/TalkLock";
-import { Player } from "@/features/player/Player";
 import { findTalk } from "@/features/share/findTalk";
 import { shareMetadata } from "@/features/share/shareMetadata";
-import { ShortPlayer } from "@/features/shortform/ShortPlayer";
-import { WebtoonStrip } from "@/features/webtoon/WebtoonStrip";
 import { getTalk, type StoredTalk, toPublicTalk } from "@/server/store";
 import { isUnlocked, passCookieName } from "@/server/talkPass";
+import { TalkLock } from "@/widgets/lock/TalkLock";
+import { Player } from "@/widgets/player/Player";
+import { ShortPlayer } from "@/widgets/shortform/ShortPlayer";
+import { WebtoonStrip } from "@/widgets/webtoon/WebtoonStrip";
 
 // 링크 미리보기 제목·설명. 이미지는 옆의 opengraph-image.tsx
 export async function generateMetadata(props: PageProps<"/talks/[id]">): Promise<Metadata> {

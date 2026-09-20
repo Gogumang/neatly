@@ -98,7 +98,7 @@
       }
     },
     {
-      "includes": ["src/features/scene-templates/**"],
+      "includes": ["src/entities/talk/ui/scene-templates/**"],
       "linter": {
         "rules": {
           "suspicious": {

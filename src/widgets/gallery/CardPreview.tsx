@@ -4,7 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useState } from "react";
 import { parseEmphasis } from "@/entities/talk/emphasis";
 import type { Talk } from "@/entities/talk/model";
-import { SceneTemplate } from "@/features/scene-templates/SceneTemplate";
+import { SceneTemplate } from "@/entities/talk/ui/scene-templates/SceneTemplate";
 import { cx } from "@/shared/lib/cx";
 import styles from "./CardPreview.module.css";
 

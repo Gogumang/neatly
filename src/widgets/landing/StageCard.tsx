@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import type { Template } from "@/entities/talk/model";
-import { SceneTemplate } from "@/features/scene-templates/SceneTemplate";
+import { SceneTemplate } from "@/entities/talk/ui/scene-templates/SceneTemplate";
 import { Icon } from "@/shared/ui/Icon/Icon";
 import { KaraokeLine } from "./KaraokeLine";
 import stage from "./Stage.module.css";

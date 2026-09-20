@@ -2,16 +2,16 @@
 
 import { AnimatePresence, MotionConfig, motion } from "motion/react";
 import { useState } from "react";
+import { useKeyboardControls } from "@/entities/talk/lib/useKeyboardControls";
+import { usePlayback } from "@/entities/talk/lib/usePlayback";
 import type { Talk } from "@/entities/talk/model";
-import { SceneTemplate } from "@/features/scene-templates/SceneTemplate";
+import { SceneTemplate } from "@/entities/talk/ui/scene-templates/SceneTemplate";
 import { SignPanel } from "@/features/sign/SignPanel";
 import styles from "./Player.module.css";
 import { PlayerControls } from "./PlayerControls";
 import { PlayerCover } from "./PlayerCover";
 import { PlayerProgress } from "./PlayerProgress";
 import { Subtitle } from "./Subtitle";
-import { useKeyboardControls } from "./useKeyboardControls";
-import { usePlayback } from "./usePlayback";
 
 export function Player({ talk }: { talk: Talk }) {
   const playback = usePlayback(talk);

@@ -18,11 +18,12 @@ shared     어디서나 쓰는 것 (디자인 토큰과 UI 조각, 작은 함수
 - **app** — `src/app`. 라우트 파일과 API 라우트. 화면 조립은 widgets 에 맡기고 여기서는 데이터를 읽어 넘긴다.
 - **widgets** — `src/widgets`. 여러 feature·entity 를 모아 한 덩어리 화면을 만든다.
   - `player` 나레이션 재생, `webtoon` 세로로 읽는 웹툰, `shortform` 세로 숏폼,
-    `gallery` 나레이션 모음, `landing` 첫 화면 구획들, `transcript` 대본 보기
+    `gallery` 나레이션 모음, `landing` 첫 화면 구획들, `lock` 비밀번호 화면
 - **features** — `src/features`. 하나의 행동에 필요한 화면과 로직.
-  - `create-talk` 만들기 퍼널, `like` 좋아요, `sign` 수어 어순 자막, `share` 공유 이미지·링크
+  - `create-talk` 만들기 퍼널, `sign` 수어 어순 자막, `share` 공유 이미지·링크
 - **entities** — `src/entities/talk`. 나레이션의 타입, 형식·장르·길이·목소리 목록,
-  자막·타임라인 계산, 장면 템플릿(`ui/scene-templates`).
+  자막·타임라인 계산(`karaoke.ts`, `timeline.ts`), 재생 훅(`lib/usePlayback` 등),
+  장면 템플릿(`ui/scene-templates`).
 - **shared** — `src/shared`. 디자인 토큰과 버튼·입력 같은 UI 조각(`ui`), 작은 함수(`lib`),
   그리고 서버에서만 쓰는 공용 코드(`server`: 저장소, LLM·음성·이미지 호출, 링크 가져오기).
 

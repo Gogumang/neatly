@@ -1,7 +1,7 @@
+import type { PlaybackStatus } from "@/entities/talk/lib/usePlayback";
 import type { Talk } from "@/entities/talk/model";
 import { IconButton } from "@/shared/ui/IconButton/IconButton";
 import styles from "./PlayerControls.module.css";
-import type { PlaybackStatus } from "./usePlayback";
 
 type Props = {
   talk: Talk;

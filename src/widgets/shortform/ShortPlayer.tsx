@@ -3,10 +3,10 @@
 import { clamp } from "es-toolkit/math";
 import { AnimatePresence, MotionConfig, motion } from "motion/react";
 import { useState } from "react";
+import { useKeyboardControls } from "@/entities/talk/lib/useKeyboardControls";
+import { usePlayback } from "@/entities/talk/lib/usePlayback";
 import type { Talk } from "@/entities/talk/model";
-import { useKeyboardControls } from "@/features/player/useKeyboardControls";
-import { usePlayback } from "@/features/player/usePlayback";
-import { SceneTemplate } from "@/features/scene-templates/SceneTemplate";
+import { SceneTemplate } from "@/entities/talk/ui/scene-templates/SceneTemplate";
 import { Icon } from "@/shared/ui/Icon/Icon";
 import { ShortEnd } from "./ShortEnd";
 import styles from "./ShortPlayer.module.css";

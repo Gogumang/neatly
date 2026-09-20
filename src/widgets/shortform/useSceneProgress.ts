@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { NarrationClock } from "@/features/player/useNarration";
+import type { NarrationClock } from "@/entities/talk/lib/useNarration";
 
 /**
  * 지금 장면이 얼마나 지났는지 (0~1). 진행 막대가 목소리를 따라 차오른다.
