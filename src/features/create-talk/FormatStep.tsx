@@ -15,7 +15,6 @@ export function FormatStep({ defaultValue, onNext }: { defaultValue?: FormatId; 
             checked={defaultValue === f.id}
             onSelect={() => onNext(f.id)}
             title={f.name}
-            description={f.lower}
           />
         ))}
       </RadioCardList>
