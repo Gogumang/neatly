@@ -4,10 +4,8 @@
   min-height: 100dvh;
   flex-direction: column;
   justify-content: center;
-  margin: 0 20px;
   padding: 72px 0;
   scroll-snap-align: start;
-  border-radius: 32px;
   background: #000000;
   color: #ffffff;
 }
@@ -87,7 +85,6 @@
 
 @media (max-width: 640px) {
   .section {
-    margin: 0 12px;
     padding: 56px 0 48px;
   }
 
