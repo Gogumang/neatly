@@ -9,7 +9,9 @@ import { sortTalks } from "./sortTalks";
 export async function getGalleryTalks() {
   // 빌드 때 고정되지 않게: 새로 만든 나레이션이 바로 보여야 한다
   await connection();
-  const listable = (await listTalks()).filter((t) => t.voiced && isListed(t));
+  // 웹툰은 목소리를 만들지 않으니 그림 칸이 있으면 완성으로 본다
+  const ready = (t: { voiced: boolean; format?: string }) => t.voiced || t.format === "webtoon";
+  const listable = (await listTalks()).filter((t) => ready(t) && isListed(t));
   const talks = sortTalks(listable).map((t) => toPublicTalk(t));
   if (talks.length > 0) return talks;
   // 아직 아무도 만들지 않았을 때만 예시 나레이션을 보여준다 (예시는 녹음된 목소리가 없다)
