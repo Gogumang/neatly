@@ -34,15 +34,10 @@
   color: var(--grey800);
 }
 
-/* 재생 버튼과 링크 복사를 나란히 */
+/* 재생 버튼 아래에 링크 복사를 둔다 */
 .actions {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
-}
-
-@media (max-width: 520px) {
-  .actions {
-    flex-direction: column;
-  }
+  gap: 12px;
 }
