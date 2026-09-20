@@ -1,0 +1,30 @@
+.end {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 32px 24px;
+  background: #17171c;
+}
+
+.title {
+  max-width: 80cqw;
+  color: var(--grey900);
+  text-align: center;
+  font-size: var(--t3);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(100%, 320px);
+}

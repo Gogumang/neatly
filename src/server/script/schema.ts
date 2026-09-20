@@ -13,7 +13,7 @@ const obj = (properties: Record<string, unknown>) => ({
 
 const templateSchema = {
   anyOf: [
-    obj({ type: { type: "string", enum: ["title"] }, eyebrow: nullableStr, title: str, subtitle: nullableStr }),
+    obj({ type: { type: "string", enum: ["title"] }, title: str, subtitle: nullableStr }),
     obj({ type: { type: "string", enum: ["keywords"] }, keywords: { type: "array", items: str } }),
     obj({
       type: { type: "string", enum: ["rollingNumber"] },

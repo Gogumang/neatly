@@ -1,7 +1,7 @@
 // 나레이션 = 장면(Segment)의 목록. 장면마다 자막 한 문장 + 화면 템플릿 하나.
 
 export type Template =
-  | { type: "title"; eyebrow?: string; title: string; subtitle?: string }
+  | { type: "title"; title: string; subtitle?: string }
   | { type: "keywords"; keywords: string[] }
   | {
       type: "rollingNumber";
@@ -43,6 +43,8 @@ export type Segment = {
   duration?: number;
   /** 이 장면을 한국수어 어순으로 옮긴 단어들 */
   sign?: string[];
+  /** 웹툰으로 볼 때 이 장면에 그린 그림 */
+  panelUrl?: string;
 };
 
 export type Talk = {
@@ -51,6 +53,8 @@ export type Talk = {
   voice?: string;
   /** 나레이션 장르 (GenreId) */
   genre?: string;
+  /** 보여 주는 방식 (FormatId): 나레이션·수어·웹툰·숏폼 */
+  format?: string;
   title: string;
   summary: string;
   author: { name: string; role?: string; avatarUrl?: string };

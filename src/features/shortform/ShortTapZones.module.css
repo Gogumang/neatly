@@ -1,0 +1,31 @@
+.zones {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: flex;
+}
+
+.side,
+.center {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 인스타 스토리처럼 가장자리는 장면 이동, 가운데는 재생/일시정지 */
+.side {
+  flex: 3;
+}
+
+.center {
+  flex: 4;
+}
+
+.side:focus-visible,
+.center:focus-visible {
+  outline: 2px solid var(--blue500);
+  outline-offset: -4px;
+  border-radius: var(--radius-m);
+}

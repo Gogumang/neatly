@@ -15,7 +15,6 @@ export const sampleTalk: Talk = {
       text: "안녕하세요. 오늘은 ⭐읽히지 않는 글⭐에 대한 이야기를 해볼게요.",
       template: {
         type: "title",
-        eyebrow: "AI Championship 2026",
         title: "읽히지 않는 글을\n보고 싶은 나레이션으로",
         subtitle: "줄글 한 편이 나레이션이 되기까지",
       },
@@ -55,7 +54,6 @@ export const sampleTalk: Talk = {
       text: "그래서 만들었어요. ⭐글을 붙여넣으면, AI가 나레이션을 만들어요.⭐",
       template: {
         type: "title",
-        eyebrow: "해결",
         title: "글을 붙여넣으면\nAI가 나레이션을 만들어요",
       },
     },
@@ -140,7 +138,6 @@ export const sampleTalk: Talk = {
       text: "이제 여러분의 글은 ⭐읽히는 대신, 들려요.⭐",
       template: {
         type: "title",
-        eyebrow: "또박",
         title: "읽는 대신,\n들려주세요",
         subtitle: "지금 내 글로 나레이션 만들기",
       },

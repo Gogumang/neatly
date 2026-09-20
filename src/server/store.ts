@@ -64,6 +64,12 @@ export async function saveFace(id: string, jpeg: Buffer): Promise<string> {
   return putMedia(`covers/${id}-face-${newId()}.jpg`, jpeg, "image/jpeg");
 }
 
+/** 웹툰 장면 그림 */
+export async function savePanel(id: string, segId: string, jpeg: Buffer): Promise<string> {
+  assertId(id, segId);
+  return putMedia(`panels/${id}/${segId}-${newId()}.jpg`, jpeg, "image/jpeg");
+}
+
 export async function readAudio(id: string, segId: string): Promise<Buffer | null> {
   if (!isSafeId(id) || !isSafeId(segId)) return null;
   const file = await readMedia(`audio/${id}/${segId}.mp3`);

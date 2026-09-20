@@ -38,9 +38,6 @@ export function PlayerCover({ talk, ended, onPlay }: { talk: Talk; ended: boolea
             나도 나레이션 만들기 ›
           </Link>
         )}
-        <Link href={`/talks/${talk.id}/transcript`} className={styles.next}>
-          대본으로 보기 ›
-        </Link>
       </motion.div>
     </motion.div>
   );

@@ -11,6 +11,8 @@ import { SCRIPT_SYSTEM_PROMPT } from "./prompt";
 import { type RawTalk, talkSchema } from "./schema";
 
 export type ScriptInput = {
+  /** 보여 주는 방식 (FormatId) */
+  format: string;
   genre: GenreId;
   length: LengthId;
   text: string;
@@ -64,6 +66,7 @@ export async function writeScript(input: ScriptInput): Promise<Omit<Talk, "id">>
     title: input.subject,
     summary: raw.summary,
     genre: input.genre,
+    format: input.format,
     author: { name: input.authorName ?? "", avatarUrl: input.avatarUrl },
     segments: toSegments(raw, { images: input.imageUrls, hasAvatar: Boolean(input.avatarUrl), source }),
   };

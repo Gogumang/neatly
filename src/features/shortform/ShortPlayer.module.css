@@ -1,0 +1,115 @@
+/* 세로 9:16 무대. 데스크톱은 높이에 맞춘 세로 화면 + 어두운 양옆, 모바일은 화면을 꽉 채운다 */
+.frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100dvh;
+  background: var(--greyBackground);
+}
+
+.stage {
+  /* 자막·장면 글자 크기를 무대 너비 기준으로 정한다 (cqw) */
+  container-type: inline-size;
+  position: relative;
+  width: min(100vw, calc(min(100dvh, 900px) * 9 / 16));
+  aspect-ratio: 9 / 16;
+  max-height: 100dvh;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: var(--background);
+  transition: background-color 0.6s;
+}
+
+/* 장면은 위쪽 절반 남짓. 아래는 자막 자리다 */
+.scenes {
+  position: absolute;
+  inset: 0 0 44% 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 52px 20px 0;
+}
+
+.scene {
+  container-type: inline-size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* 장면과 자막 사이를 어둡게 이어 자막이 항상 읽히게 한다 */
+.scrim {
+  position: absolute;
+  inset: 40% 0 0 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--background) 26%);
+}
+
+.hint {
+  position: absolute;
+  inset: 0 0 44% 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 28px;
+  pointer-events: none;
+  text-align: center;
+}
+
+.hintIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  background: var(--greyOpacity200);
+  color: var(--grey900);
+}
+
+.hintTitle {
+  max-width: 80cqw;
+  color: var(--grey900);
+  font-size: var(--t4);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+}
+
+.hintLabel {
+  color: var(--grey600);
+  font-size: var(--t6);
+  font-weight: 600;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .stage {
+    width: 100vw;
+    height: 100dvh;
+    max-height: none;
+    aspect-ratio: auto;
+    border-radius: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage {
+    transition: none;
+  }
+}

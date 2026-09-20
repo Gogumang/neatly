@@ -18,9 +18,10 @@ export function Player({ talk }: { talk: Talk }) {
   const { index, segment, status, go, restart, toggle } = playback;
   const started = status !== "idle";
   const covered = status === "idle" || status === "ended";
-  const [signOn, setSignOn] = useState(false);
+  // 수어로 만든 나레이션은 자막을 처음부터 켜 둔다
   // 수어 어순 자막은 AI 가 만들어 둔 나레이션에만 있다 (예전 나레이션에는 없다)
-  const hasSign = talk.segments.some((seg) => seg.sign?.length);
+  // 수어로 만든 나레이션은 자막을 늘 보여 준다 (따로 켜고 끄지 않는다)
+  const showSign = talk.format === "sign" && talk.segments.some((seg) => seg.sign?.length);
 
   // 직접 장면을 옮겼을 때만 위치를 알린다. 자동으로 넘어갈 때 알리면 나레이션과 겹친다.
   const [movedTo, setMovedTo] = useState<number | null>(null);
@@ -53,14 +54,9 @@ export function Player({ talk }: { talk: Talk }) {
             </AnimatePresence>
           </div>
 
-          {started && signOn && <SignPanel segment={segment} playing={status === "playing"} clock={playback.clock} />}
+          {started && showSign && <SignPanel segment={segment} playing={status === "playing"} clock={playback.clock} />}
           <Subtitle segment={segment} visible={started} playing={status === "playing"} clock={playback.clock} />
-          <PlayerControls
-            talk={talk}
-            {...playback}
-            go={move}
-            sign={hasSign ? { on: signOn, toggle: () => setSignOn((v) => !v) } : undefined}
-          />
+          <PlayerControls talk={talk} {...playback} go={move} />
           <p className={styles.srOnly} aria-live="polite">
             {movedTo === index ? `장면 ${index + 1} / ${last + 1}` : ""}
           </p>

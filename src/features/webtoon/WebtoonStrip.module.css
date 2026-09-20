@@ -1,0 +1,108 @@
+/* 세로로 쭉 읽어 내려가는 웹툰. 가운데 720px, 모바일에서는 화면 폭에 꽉 찬다 */
+
+.strip {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px 20px 64px;
+}
+
+.upper {
+  color: var(--grey600);
+  font-size: var(--t6);
+  font-weight: 600;
+}
+
+.panels {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 28px;
+  list-style: none;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 그림 칸. 받아 오기 전에도 자리가 흔들리지 않게 비율을 미리 잡아 둔다 */
+.frame {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-l);
+  background: var(--greyBackground);
+  /* 그림은 3:2 로 받지만 조금 잘라 둔다. 그림 모델이 위아래에 남기는 띠를 덜어내기 위해서다 */
+  aspect-ratio: 16 / 9;
+}
+
+.art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 자막 말풍선. 그림 아래에 조금 겹쳐 얹어 한 칸으로 읽히게 한다 */
+.caption {
+  position: relative;
+  z-index: 1;
+  margin: -12px 12px 0;
+  padding: 14px 18px;
+  border: 1px solid var(--grey200);
+  border-radius: var(--radius-l);
+  background: var(--backgroundLevel1);
+  box-shadow: 0 6px 20px var(--greyOpacity100);
+  color: var(--grey900);
+  font-size: var(--t5);
+  font-weight: 500;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+/* 그림이 없는 칸은 글자만 남기고, 겹침도 없앤다 */
+.panel:not(:has(.frame)) .caption {
+  margin: 0;
+}
+
+.em {
+  color: var(--blue600);
+  font-weight: 700;
+}
+
+.more {
+  display: inline-block;
+  margin-top: 32px;
+  color: var(--grey600);
+  font-size: var(--t6);
+  font-weight: 600;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .strip {
+    padding: 16px 0 48px;
+  }
+
+  .strip > header,
+  .more {
+    padding: 0 16px;
+  }
+
+  .frame {
+    border-radius: 0;
+  }
+
+  .caption {
+    margin: -12px 8px 0;
+  }
+}

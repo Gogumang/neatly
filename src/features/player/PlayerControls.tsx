@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { Talk } from "@/entities/talk/model";
 import { IconButton } from "@/shared/ui/IconButton/IconButton";
 import styles from "./PlayerControls.module.css";
@@ -12,11 +11,9 @@ type Props = {
   go: (index: number) => void;
   toggle: () => void;
   toggleMute: () => void;
-  /** 수어 어순 자막이 있는 나레이션만 */
-  sign?: { on: boolean; toggle: () => void };
 };
 
-export function PlayerControls({ talk, index, status, muted, go, toggle, toggleMute, sign }: Props) {
+export function PlayerControls({ talk, index, status, muted, go, toggle, toggleMute }: Props) {
   return (
     <div className={styles.controls}>
       <div className={styles.row}>
@@ -38,19 +35,6 @@ export function PlayerControls({ talk, index, status, muted, go, toggle, toggleM
           />
           <IconButton icon="next" label="다음 장면" onClick={() => go(index + 1)} />
           <IconButton icon={muted ? "mute" : "sound"} label={muted ? "소리 켜기" : "소리 끄기"} onClick={toggleMute} />
-          {sign && (
-            <IconButton
-              icon="sign"
-              label={sign.on ? "수어 어순 자막 끄기" : "수어 어순 자막 켜기"}
-              aria-pressed={sign.on}
-              className={sign.on ? styles.signOn : undefined}
-              onClick={sign.toggle}
-            />
-          )}
-          {/* 소리·움직임 없이 글로 읽는 길. 새 아이콘 대신 짧은 글자 링크 */}
-          <Link href={`/talks/${talk.id}/transcript`} className={styles.transcript} aria-label="대본으로 보기">
-            대본
-          </Link>
         </div>
       </div>
     </div>
