@@ -1,0 +1,45 @@
+{
+  "name": "stage",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "biome check",
+    "fonts": "node scripts/download-fonts.mjs",
+    "format": "biome check --write",
+    "knip": "knip",
+    "typecheck": "tsc --noEmit",
+    "check": "biome check && tsc --noEmit && knip && vitest run",
+    "test": "vitest run",
+    "lottie": "node scripts/make-lottie.mjs"
+  },
+  "dependencies": {
+    "@mozilla/readability": "^0.6.0",
+    "@supabase/supabase-js": "^2.116.0",
+    "@suspensive/react": "^3.21.4",
+    "@use-funnel/browser": "^0.0.17",
+    "es-toolkit": "^1.52.0",
+    "linkedom": "^0.18.13",
+    "lottie-react": "^3.1.2",
+    "motion": "^13.4.0",
+    "next": "16.3.5",
+    "pg": "^8.23.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.14",
+    "@fixture-kit/core": "^1.0.1",
+    "@types/node": "^20",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "knip": "6.37.0",
+    "typescript": "^5",
+    "vitest": "^5.0.1"
+  },
+  "packageManager": "pnpm@10.18.1"
+}

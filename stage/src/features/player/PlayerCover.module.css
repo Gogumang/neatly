@@ -1,0 +1,35 @@
+.cover {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #17171c;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  max-width: 720px;
+}
+
+.author {
+  color: var(--grey600);
+  font-size: var(--t5);
+  font-weight: 600;
+}
+
+.next {
+  margin-top: -16px;
+  color: var(--grey600);
+  font-size: var(--t6);
+  font-weight: 600;
+}
+
+.next:hover {
+  color: var(--grey800);
+}

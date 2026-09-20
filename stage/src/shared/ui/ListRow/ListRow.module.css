@@ -1,0 +1,43 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 56px;
+}
+
+.asset {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--grey100);
+  font-family: Tossface, var(--font);
+  font-size: 22px;
+}
+
+.texts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.top {
+  color: var(--grey800);
+  font-size: var(--t6);
+  font-weight: 600;
+  word-break: keep-all;
+}
+
+.bottom {
+  color: var(--grey500);
+  font-size: var(--t7);
+  font-weight: 500;
+}
+
+.right {
+  margin-left: auto;
+  flex-shrink: 0;
+}

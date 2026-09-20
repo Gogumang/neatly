@@ -1,0 +1,46 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.number {
+  display: flex;
+  align-items: flex-end;
+  color: var(--grey900);
+  font-size: clamp(36px, 11cqw, 148px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.window {
+  display: inline-block;
+  height: 1.15em;
+  overflow: hidden;
+}
+
+.strip {
+  display: flex;
+  flex-direction: column;
+}
+
+.strip span,
+.separator {
+  height: 1.15em;
+  line-height: 1.15em;
+}
+
+.suffix {
+  margin-left: 0.08em;
+  font-size: 0.55em;
+  line-height: 1.8;
+}
+
+.caption {
+  margin-top: 12px;
+  color: var(--grey600);
+  font-size: clamp(var(--t7), 2.2cqw, var(--t3));
+  font-weight: 600;
+}

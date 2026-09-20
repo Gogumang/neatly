@@ -1,0 +1,17 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  max-width: 900px;
+}
+
+.keyword {
+  padding: clamp(10px, 1.8cqw, 18px) clamp(16px, 3cqw, 30px);
+  border-radius: var(--radius-full);
+  color: #000000;
+  font-size: clamp(16px, 4.4cqw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  box-shadow: 0 12px 40px var(--greyOpacity100);
+}

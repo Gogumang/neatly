@@ -1,0 +1,138 @@
+/* 마지막 화면: 무대가 화면을 가득 채우고, 그 위로 권유가 떠오른다 */
+
+.track {
+  position: relative;
+  height: 260vh;
+  margin-top: 148px;
+}
+
+/* 동작 줄이기일 때는 스크롤 구간 없이 한 화면만 */
+.still {
+  height: auto;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.still .sticky {
+  position: static;
+  height: auto;
+  padding: 80px 0;
+}
+
+.panel {
+  position: absolute;
+  width: min(1120px, 92vw);
+  height: min(640px, 72vh);
+  overflow: hidden;
+  border-radius: 28px;
+  background:
+    radial-gradient(90% 120% at 16% -10%, #4a6bff 0%, rgba(74, 107, 255, 0) 55%),
+    radial-gradient(78% 110% at 90% 14%, #a234c7 0%, rgba(162, 52, 199, 0) 52%),
+    radial-gradient(120% 120% at 52% 116%, #10b3ad 0%, rgba(16, 179, 173, 0) 48%),
+    linear-gradient(162deg, #121a38 0%, #080b18 100%);
+  box-shadow: 0 60px 120px -60px rgba(9, 14, 36, 0.7);
+  will-change: transform, opacity;
+}
+
+.still .panel {
+  position: relative;
+  height: min(600px, 84vh);
+}
+
+/* 무대 위를 천천히 도는 빛 */
+.panelGlow {
+  position: absolute;
+  top: -30%;
+  left: 10%;
+  width: 70%;
+  height: 90%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 65%);
+  filter: blur(30px);
+  animation: sway 18s ease-in-out infinite;
+}
+
+.panelGrain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E");
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  max-width: min(720px, 88vw);
+  text-align: center;
+  will-change: transform, opacity;
+}
+
+.title {
+  color: #ffffff;
+  font-size: clamp(30px, 5.2vw, 58px);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.2;
+  word-break: keep-all;
+  text-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+}
+
+.lower {
+  max-width: 30ch;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(15px, 1.5vw, 18px);
+  font-weight: 500;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+.note {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: var(--t7);
+  font-weight: 600;
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(22%, 14%, 0) scale(1.2);
+  }
+}
+
+@media (max-width: 760px) {
+  .track {
+    height: 220vh;
+    margin-top: 96px;
+  }
+
+  .panel {
+    width: 94vw;
+    height: min(560px, 74vh);
+    border-radius: 24px;
+  }
+
+  .content {
+    gap: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panelGlow {
+    animation: none;
+  }
+}

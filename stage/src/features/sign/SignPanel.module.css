@@ -1,0 +1,60 @@
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: #101013;
+}
+
+.video {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  object-fit: contain;
+}
+
+.label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.55);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.size {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  min-width: 44px;
+  min-height: 32px;
+  padding: 4px 12px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.55);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.size[aria-pressed="true"] {
+  background: #ffffff;
+  color: #101013;
+}
+
+.size:focus-visible {
+  outline: 2px solid var(--blue300);
+  outline-offset: 2px;
+}
+
+/* 모바일은 위아래로 나눠 이미 화면의 40% 를 쓰므로 크기 버튼을 숨긴다 */
+@media (max-width: 640px) {
+  .size {
+    display: none;
+  }
+}

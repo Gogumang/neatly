@@ -1,0 +1,41 @@
+/* 목소리를 따라 차오르는 자막의 낱글자 */
+
+/* 낱글자가 아무 데서나 줄바꿈되지 않도록 단어 뭉치로 묶는다 */
+.word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* 흩어져 있던 글자가 제자리로 모인다 */
+.ch {
+  display: inline-block;
+  animation: regroup 620ms var(--ease-out) backwards;
+  animation-delay: calc(var(--i) * 14ms);
+}
+
+.sung {
+  color: var(--grey900);
+}
+
+.em.sung {
+  color: var(--blue500);
+}
+
+@keyframes regroup {
+  from {
+    opacity: 0;
+    transform: translate3d(var(--dx), var(--dy), 0) rotate(var(--rot)) scale(0.7);
+    filter: blur(7px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ch {
+    animation: none;
+  }
+}

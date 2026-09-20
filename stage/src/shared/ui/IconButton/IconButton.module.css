@@ -1,0 +1,40 @@
+.button {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--grey800);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.15s;
+}
+
+.button:hover {
+  background: var(--greyOpacity100);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--blue300);
+  outline-offset: 2px;
+}
+
+.medium {
+  width: 40px;
+  height: 40px;
+}
+
+.large {
+  width: 52px;
+  height: 52px;
+}
+
+.solid {
+  background: var(--grey900);
+  color: var(--background);
+}
+
+.solid:hover {
+  background: var(--grey800);
+}

@@ -1,0 +1,51 @@
+.preview {
+  position: absolute;
+  inset: 0;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 14px;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: var(--background);
+}
+
+.scene {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.subtitle {
+  color: var(--grey900);
+  font-size: clamp(11px, 3.4cqw, 15px);
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  word-break: keep-all;
+}
+
+.em {
+  color: var(--blue500);
+}
+
+.progress {
+  display: flex;
+  gap: 3px;
+}
+
+.step {
+  flex: 1;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--greyOpacity200);
+}
+
+.stepOn {
+  background: var(--blue500);
+}

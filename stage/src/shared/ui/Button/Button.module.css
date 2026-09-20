@@ -1,0 +1,141 @@
+.button {
+  --bg: var(--blue500);
+  --fg: #ffffff;
+  --bg-hover: var(--blue600);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 0;
+  border-radius: var(--radius-l);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.15s;
+}
+
+.button:hover:not(:disabled) {
+  background: var(--bg-hover);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--blue300);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* 색상 × 스타일 */
+.primary.fill {
+  --bg: var(--blue500);
+  --fg: #ffffff;
+  --bg-hover: var(--blue600);
+}
+.primary.weak {
+  --bg: var(--blue50);
+  --fg: var(--blue600);
+  --bg-hover: var(--blue100);
+}
+.dark.fill {
+  --bg: var(--grey800);
+  --fg: var(--background);
+  --bg-hover: var(--grey900);
+}
+.dark.weak {
+  --bg: var(--grey100);
+  --fg: var(--grey700);
+  --bg-hover: var(--grey200);
+}
+.danger.fill {
+  --bg: var(--red500);
+  --fg: #ffffff;
+  --bg-hover: var(--red600);
+}
+.danger.weak {
+  --bg: var(--red50);
+  --fg: var(--red500);
+  --bg-hover: var(--red50);
+}
+.light.fill {
+  --bg: #ffffff;
+  --fg: var(--grey900);
+  --bg-hover: var(--grey50);
+}
+.light.weak {
+  --bg: rgba(255, 255, 255, 0.16);
+  --fg: #ffffff;
+  --bg-hover: rgba(255, 255, 255, 0.24);
+}
+
+/* 크기 */
+.small {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--radius-s);
+  font-size: var(--t7);
+}
+.medium {
+  height: 40px;
+  padding: 0 16px;
+  border-radius: var(--radius-m);
+  font-size: var(--t6);
+}
+.large {
+  height: 48px;
+  padding: 0 20px;
+  border-radius: var(--radius-m);
+  font-size: var(--t5);
+}
+.xlarge {
+  height: 56px;
+  padding: 0 24px;
+  font-size: var(--t5);
+  font-weight: 700;
+}
+
+/* 너비 */
+.block {
+  display: flex;
+  width: 100%;
+}
+.full {
+  display: flex;
+  width: 100%;
+  border-radius: 0;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.loadingLabel {
+  visibility: hidden;
+}
+
+.loadingOverlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

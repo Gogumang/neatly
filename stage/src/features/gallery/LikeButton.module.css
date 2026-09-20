@@ -1,0 +1,28 @@
+.like {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--grey100);
+  color: var(--grey600);
+  font-family: var(--font);
+  font-size: var(--t6);
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.like:hover {
+  background: var(--grey200);
+}
+
+.liked,
+.liked:hover {
+  background: var(--red50);
+  color: var(--red500);
+}

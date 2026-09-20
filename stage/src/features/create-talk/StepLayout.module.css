@@ -1,0 +1,33 @@
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-height: calc(100dvh - 88px);
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.error {
+  padding: 14px 16px;
+  border-radius: var(--radius-m);
+  background: var(--red50);
+  color: var(--red500);
+  font-size: var(--t6);
+  font-weight: 500;
+}
+
+.cta {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 -20px;
+  padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+  background: linear-gradient(to bottom, transparent, var(--background) 30%);
+}

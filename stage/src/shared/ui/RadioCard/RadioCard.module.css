@@ -1,0 +1,55 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--radius-l);
+  background: var(--grey50);
+  box-shadow: inset 0 0 0 1.5px transparent;
+  cursor: pointer;
+  transition:
+    background-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.card:has(input:checked) {
+  background: var(--blue50);
+  box-shadow: inset 0 0 0 2px var(--blue500);
+}
+
+.card:has(input:focus-visible) {
+  outline: 2px solid var(--blue300);
+  outline-offset: 2px;
+}
+
+.radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.title {
+  color: var(--grey900);
+  font-size: var(--t5);
+  font-weight: 600;
+}
+
+.description {
+  color: var(--grey600);
+  font-size: var(--t7);
+}

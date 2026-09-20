@@ -1,0 +1,177 @@
+/* 첫 화면: 오로라 배경 위의 제목과 바로 시작하는 입력칸 */
+
+.hero {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  min-height: min(92vh, 900px);
+  padding: 104px 0 80px;
+  text-align: center;
+  isolation: isolate;
+}
+
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 15px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow:
+    inset 0 0 0 1px var(--greyOpacity200),
+    0 6px 18px -12px var(--greyOpacity300);
+  backdrop-filter: blur(10px);
+  color: var(--grey700);
+  font-size: var(--t7);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.eyebrowDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--blue500);
+  box-shadow: 0 0 0 4px var(--blue50);
+}
+
+.heroTitle {
+  max-width: 16ch;
+  color: var(--grey900);
+  font-size: clamp(38px, 7vw, 74px);
+  font-weight: 700;
+  line-height: 1.14;
+  letter-spacing: -0.045em;
+  word-break: keep-all;
+}
+
+.heroLine {
+  display: block;
+}
+
+.word {
+  display: inline-block;
+  will-change: transform, filter;
+}
+
+.word + .word {
+  margin-left: 0.24em;
+}
+
+.gradient {
+  padding-right: 0.04em;
+  background: linear-gradient(98deg, var(--blue600) 0%, var(--purple500) 52%, var(--blue500) 100%);
+  background-clip: text;
+  color: transparent;
+}
+
+.heroLower {
+  max-width: 30ch;
+  color: var(--grey600);
+  font-size: clamp(16px, 1.5vw, 19px);
+  font-weight: 500;
+  line-height: 1.66;
+  word-break: keep-all;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+/* 지금까지 쌓인 숫자 */
+.stat {
+  color: var(--grey500);
+  font-size: var(--t7);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  word-break: keep-all;
+}
+
+.stat strong {
+  color: var(--grey800);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.textLink {
+  color: var(--grey600);
+  font-size: var(--t6);
+  font-weight: 600;
+}
+
+.textLink:hover {
+  color: var(--grey900);
+}
+
+.textLink:focus-visible {
+  outline: 2px solid var(--blue300);
+  outline-offset: 4px;
+  border-radius: var(--radius-s);
+}
+
+/* 스크롤을 부르는 표시 */
+.scrollCue {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  width: 1px;
+  height: 46px;
+  overflow: hidden;
+  background: var(--greyOpacity200);
+}
+
+.scrollCue::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, var(--blue500));
+  animation: cue 2.4s var(--ease-out) infinite;
+}
+
+@keyframes cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%,
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    min-height: auto;
+    gap: 28px;
+    padding: 76px 0 52px;
+  }
+
+  .heroTitle {
+    font-size: clamp(34px, 9.2vw, 44px);
+    letter-spacing: -0.04em;
+  }
+
+  .scrollCue {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollCue::after {
+    animation: none;
+  }
+}

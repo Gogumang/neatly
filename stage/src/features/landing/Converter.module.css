@@ -1,0 +1,52 @@
+/* 스크롤 구간 하나가 장면 하나. 넓은 화면에서는 무대를 붙여 두고 스크롤로 넘긴다 */
+.track {
+  position: relative;
+  padding-top: 112px;
+}
+
+.converter {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 24px;
+  width: 100%;
+}
+
+@media (min-width: 761px) and (min-height: 820px) {
+  .track {
+    height: 300vh;
+    padding-top: 0;
+  }
+
+  .converter {
+    position: sticky;
+    top: 0;
+    align-items: center;
+    min-height: 100vh;
+  }
+}
+
+/* 마무리로 갈 때 무대 뒤에서 번지는 빛 */
+.finaleGlow {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  margin: -60% 0 0 -60%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--blue50) 0%, rgba(232, 243, 255, 0) 62%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .track {
+    padding-top: 84px;
+  }
+
+  .converter {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,174 @@
+.page {
+  /* hidden 이면 안쪽 sticky 가 풀린다 (clip 은 스크롤 컨테이너를 만들지 않는다) */
+  overflow-x: clip;
+}
+
+/* 본문 기둥. 마무리 화면만 이 폭을 벗어난다 */
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 커서를 따라 움직일 여백을 버튼 둘레에 둔다 */
+.magnet {
+  display: inline-block;
+  padding: 14px;
+  margin: -14px;
+}
+
+/* ---------- 섹션 ---------- */
+
+.section {
+  padding: 148px 0 0;
+}
+
+.sectionHead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 64px;
+  text-align: center;
+}
+
+.label {
+  color: var(--blue500);
+  font-size: var(--t7);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.sectionTitle {
+  color: var(--grey900);
+  font-size: clamp(28px, 4.4vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.26;
+  word-break: keep-all;
+}
+
+/* 아래에서 올라오는 글줄을 잘라 보여주는 창 */
+.mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+.maskInner {
+  display: block;
+  will-change: transform;
+}
+
+.sectionLower {
+  max-width: 44ch;
+  color: var(--grey600);
+  font-size: var(--t5);
+  font-weight: 500;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+/* ---------- 기능 카드 ---------- */
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  list-style: none;
+  perspective: 1200px;
+}
+
+.feature {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  padding: 30px 26px 34px;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(170deg, var(--background) 0%, var(--grey50) 100%);
+  box-shadow:
+    0 0 0 1px var(--greyOpacity100),
+    0 14px 30px -26px var(--greyOpacity300);
+  transform-style: preserve-3d;
+  transition:
+    transform 0.55s var(--ease-out),
+    box-shadow 0.55s var(--ease-out);
+}
+
+/* 위쪽 모서리를 스치는 빛 */
+.feature::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(120% 80% at 18% -10%, var(--blue50) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.55s var(--ease-out);
+  pointer-events: none;
+}
+
+.feature:hover {
+  transform: translate3d(0, -6px, 0) rotateX(3.5deg);
+  box-shadow:
+    0 0 0 1px var(--greyOpacity200),
+    0 34px 60px -34px var(--greyOpacity300);
+}
+
+.feature:hover::after {
+  opacity: 1;
+}
+
+.featureEmoji {
+  position: relative;
+  z-index: 1;
+  font-family: Tossface, var(--font);
+  font-size: 30px;
+  line-height: 1;
+}
+
+.featureTitle {
+  position: relative;
+  z-index: 1;
+  color: var(--grey900);
+  font-size: var(--t4);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.featureText {
+  position: relative;
+  z-index: 1;
+  color: var(--grey600);
+  font-size: var(--t6);
+  line-height: 1.66;
+  word-break: keep-all;
+}
+
+@media (max-width: 760px) {
+  .section {
+    padding-top: 96px;
+  }
+
+  .sectionHead {
+    margin-bottom: 40px;
+  }
+
+  .feature {
+    padding: 26px 22px 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature,
+  .feature::after {
+    transition: none;
+  }
+
+  .feature:hover {
+    transform: none;
+  }
+}

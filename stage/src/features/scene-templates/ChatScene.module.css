@@ -1,0 +1,62 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 2cqw, 14px);
+  width: min(560px, 100%);
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.mine {
+  flex-direction: row-reverse;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: clamp(28px, 7cqw, 44px);
+  height: clamp(28px, 7cqw, 44px);
+  border-radius: 14px;
+  background: var(--grey100);
+  font-family: Tossface, var(--font);
+  font-size: clamp(14px, 3.4cqw, 22px);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 80%;
+}
+
+.mine .body {
+  align-items: flex-end;
+}
+
+.name {
+  color: var(--grey600);
+  font-size: var(--t7);
+  font-weight: 600;
+}
+
+.bubble {
+  padding: clamp(7px, 1.8cqw, 12px) clamp(10px, 2.4cqw, 16px);
+  border-radius: 4px 18px 18px 18px;
+  background: var(--grey100);
+  color: var(--grey900);
+  font-size: clamp(var(--t7), 2cqw, 18px);
+  font-weight: 500;
+  line-height: 1.45;
+  word-break: keep-all;
+}
+
+.mine .bubble {
+  border-radius: 18px 4px 18px 18px;
+  background: var(--blue500);
+  color: #ffffff;
+}

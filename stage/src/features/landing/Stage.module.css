@@ -1,0 +1,173 @@
+/* 변환 애니메이션의 무대 카드 */
+
+.stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 420px;
+  padding: 24px;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(168deg, var(--background) 0%, var(--grey50) 140%);
+  box-shadow:
+    0 40px 90px -40px var(--greyOpacity300),
+    0 2px 6px var(--greyOpacity100),
+    0 0 0 1px var(--greyOpacity100);
+  will-change: transform;
+  touch-action: pan-y;
+  isolation: isolate;
+  cursor: grab;
+}
+
+/* 유리 같은 테두리: 색이 살짝 번진 1px 선 */
+.stage::after {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    140deg,
+    rgba(49, 130, 246, 0.55) 0%,
+    rgba(162, 52, 199, 0.4) 30%,
+    rgba(255, 255, 255, 0) 55%,
+    rgba(24, 165, 165, 0.4) 100%
+  );
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.stage:active {
+  cursor: grabbing;
+}
+
+.stage:focus-visible {
+  outline: 2px solid var(--blue500);
+  outline-offset: 3px;
+}
+
+/* 커서를 따라다니는 빛 */
+.glow {
+  position: absolute;
+  z-index: -1;
+  width: 320px;
+  height: 320px;
+  margin: -160px 0 0 -160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--blue100) 0%, transparent 65%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 넘기는 방법 안내 */
+.hint {
+  position: relative;
+  z-index: 1;
+  color: var(--grey400);
+  font-size: var(--t7);
+  font-weight: 600;
+  text-align: center;
+}
+
+.stageBar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress {
+  display: flex;
+  flex: 1;
+  gap: 4px;
+}
+
+.listen {
+  display: grid;
+  place-items: center;
+  min-width: 84px;
+  height: 30px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--grey100);
+  color: var(--grey700);
+  font-family: var(--font);
+  font-size: var(--t7);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.listen:hover {
+  background: var(--grey200);
+}
+
+.step {
+  flex: 1;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--greyOpacity200);
+}
+
+.stepFill {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--blue400), var(--blue600));
+}
+
+/* 장면은 이 높이 안에서만 그린다 (카드 밖으로 넘치지 않게) */
+.scene {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.sceneInner {
+  container-type: inline-size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.subtitle {
+  position: relative;
+  z-index: 1;
+  min-height: 3.2em;
+  color: var(--grey300);
+  font-size: clamp(var(--t6), 1.5vw, 19px);
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  word-break: keep-all;
+}
+
+/* 무대가 붙어 있는 동안 화면을 가득 채우지 않도록 */
+@media (min-width: 761px) and (min-height: 820px) {
+  .stage {
+    min-height: min(540px, 70vh);
+  }
+}
+
+@media (max-width: 760px) {
+  .stage {
+    min-height: 340px;
+  }
+}

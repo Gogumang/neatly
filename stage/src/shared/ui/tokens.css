@@ -1,0 +1,137 @@
+/*
+ * 또박 디자인 토큰
+ * - 팔레트: grey / blue / red / orange / yellow / green / teal / purple (50~900)
+ * - [data-theme="dark"] 안에서는 같은 이름이 다크 값으로 바뀐다 (adaptive).
+ *   컴포넌트는 팔레트 이름만 쓰면 라이트/다크가 자동으로 맞춰진다.
+ */
+
+:root,
+[data-theme="light"] {
+  --grey50: #f9fafb;
+  --grey100: #f2f4f6;
+  --grey200: #e5e8eb;
+  --grey300: #d1d6db;
+  --grey400: #b0b8c1;
+  --grey500: #8b95a1;
+  --grey600: #6b7684;
+  --grey700: #4e5968;
+  --grey800: #333d4b;
+  --grey900: #191f28;
+
+  --greyOpacity100: rgba(2, 32, 71, 0.05);
+  --greyOpacity200: rgba(0, 27, 55, 0.1);
+  --greyOpacity300: rgba(0, 29, 58, 0.18);
+  --greyOpacity500: rgba(3, 24, 50, 0.46);
+
+  --blue50: #e8f3ff;
+  --blue100: #c9e2ff;
+  --blue200: #90c2ff;
+  --blue300: #64a8ff;
+  --blue400: #4593fc;
+  --blue500: #3182f6;
+  --blue600: #2272eb;
+  --blue700: #1b64da;
+
+  --red50: #ffeeee;
+  --red500: #f04452;
+  --red600: #e42939;
+
+  --orange50: #fff3e0;
+  --orange400: #ffa927;
+  --orange500: #fe9800;
+
+  --yellow50: #fff9e7;
+  --yellow400: #ffd158;
+
+  --green50: #f0faf6;
+  --green400: #15c47e;
+  --green500: #03b26c;
+
+  --teal50: #edf8f8;
+  --teal500: #18a5a5;
+
+  --purple50: #f9f0fc;
+  --purple300: #c770e4;
+  --purple500: #a234c7;
+
+  --background: #ffffff;
+  --backgroundLevel1: #ffffff;
+  --greyBackground: #f2f4f6;
+  --dimmed: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] {
+  --grey50: #202027;
+  --grey100: #2c2c35;
+  --grey200: #3c3c47;
+  --grey300: #4d4d59;
+  --grey400: #62626d;
+  --grey500: #7e7e87;
+  --grey600: #9e9ea4;
+  --grey700: #c3c3c6;
+  --grey800: #e4e4e5;
+  --grey900: #ffffff;
+
+  --greyOpacity100: rgba(217, 217, 255, 0.11);
+  --greyOpacity200: rgba(222, 222, 255, 0.19);
+  --greyOpacity300: rgba(224, 224, 255, 0.27);
+  --greyOpacity500: rgba(242, 242, 255, 0.47);
+
+  --blue50: #202c4d;
+  --blue100: #23386a;
+  --blue200: #25478c;
+  --blue300: #265ab3;
+  --blue400: #2970d9;
+  --blue500: #3485fa;
+  --blue600: #449bff;
+  --blue700: #61b0ff;
+
+  --red50: #3c2020;
+  --red500: #f04251;
+  --red600: #fa616d;
+
+  --orange50: #3d2500;
+  --orange400: #cf7200;
+  --orange500: #f18600;
+
+  --yellow50: #3d2d1a;
+  --yellow400: #ffa126;
+
+  --green50: #153729;
+  --green400: #13a065;
+  --green500: #16bb76;
+
+  --teal50: #203537;
+  --teal500: #2eaab2;
+
+  --purple50: #3f2447;
+  --purple300: #7b2595;
+  --purple500: #ae3dd1;
+
+  --background: #17171c;
+  --backgroundLevel1: #202027;
+  --greyBackground: #101013;
+  --dimmed: rgba(0, 0, 0, 0.56);
+}
+
+:root {
+  /* 타이포그래피: t1(가장 큼) ~ t7 */
+  --t1: 30px;
+  --t2: 26px;
+  --t3: 22px;
+  --t4: 20px;
+  --t5: 17px;
+  --t6: 15px;
+  --t7: 13px;
+
+  --radius-s: 8px;
+  --radius-m: 12px;
+  --radius-l: 16px;
+  --radius-xl: 20px;
+  --radius-full: 999px;
+
+  --font:
+    "Toss Product Sans", Tossface, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", sans-serif;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --press-scale: 0.96;
+}

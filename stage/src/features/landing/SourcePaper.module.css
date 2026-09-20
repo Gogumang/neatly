@@ -1,0 +1,128 @@
+/* 왼쪽 원고: 눌러서 장면을 고르는 문장들 */
+
+.paper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(180deg, var(--grey50) 0%, var(--background) 160%);
+  box-shadow: 0 0 0 1px var(--greyOpacity100);
+}
+
+.paperLabel {
+  color: var(--grey500);
+  font-size: var(--t7);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.line {
+  position: relative;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  color: var(--grey400);
+  font-size: var(--t6);
+  font-weight: 500;
+  line-height: 1.75;
+  word-break: keep-all;
+  transition: color 0.4s;
+}
+
+.line:hover {
+  color: var(--grey700);
+}
+
+/* 문장 위를 한 번 훑고 지나가는 빛 */
+.line::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -6px -10px;
+  border-radius: var(--radius-s);
+  background: linear-gradient(100deg, transparent 0%, var(--blue50) 45%, transparent 100%);
+  opacity: 0;
+  transform: translateX(-24%);
+  transition:
+    opacity 0.25s,
+    transform 0.55s var(--ease-out);
+}
+
+.line:hover::before,
+.line:focus-visible::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 지금 읽는 문장에 머무는 조명 (장면이 바뀌면 같이 미끄러진다) */
+.spot {
+  position: absolute;
+  z-index: -1;
+  inset: -8px -14px;
+  border-radius: var(--radius-m);
+  background: linear-gradient(96deg, var(--blue50) 0%, rgba(232, 243, 255, 0.35) 62%, transparent 100%);
+}
+
+.marker {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: -12px;
+  width: 3px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--blue400), var(--blue600));
+}
+
+/* 문장에서 무대 쪽으로 건너가는 빛줄기 (글자는 덧그리지 않는다) */
+.beam {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 46px;
+  height: 2px;
+  margin-left: 10px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--blue500), rgba(49, 130, 246, 0));
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.line:focus-visible {
+  outline: 2px solid var(--blue300);
+  outline-offset: 4px;
+  border-radius: var(--radius-s);
+}
+
+.lineActive,
+.lineActive:hover {
+  color: var(--grey900);
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .paper {
+    padding: 20px;
+  }
+
+  /* 한 칸으로 쌓이면 건너갈 곳이 없다 */
+  .beam {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line,
+  .line::before {
+    transition: none;
+  }
+
+  .line::before {
+    transform: none;
+  }
+}
