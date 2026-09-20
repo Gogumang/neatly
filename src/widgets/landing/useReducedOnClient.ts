@@ -1,7 +1,7 @@
 "use client";
 
+import { useIsClient } from "@suspensive/react";
 import { useReducedMotion } from "motion/react";
-import { useEffect, useState } from "react";
 
 /**
  * "동작 줄이기" 설정.
@@ -9,7 +9,5 @@ import { useEffect, useState } from "react";
  */
 export function useReducedOnClient() {
   const reduced = useReducedMotion() ?? false;
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  return mounted && reduced;
+  return useIsClient() && reduced;
 }

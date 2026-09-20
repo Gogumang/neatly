@@ -1,7 +1,8 @@
 "use client";
 
+import { useIsClient } from "@suspensive/react";
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "motion/react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { Talk } from "@/entities/talk/model";
 import { Icon } from "@/shared/ui/Icon/Icon";
 import { sortTalks } from "./sortTalks";
@@ -25,9 +26,7 @@ export function TalkBrowser({ talks }: { talks: Stored[] }) {
   const { scrollYProgress } = useScroll({ target: section, offset: ["start end", "start 30%"] });
   const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1]);
   // 서버가 그린 style 과 엉키지 않게 붙은 뒤부터 움직인다
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  const grow = mounted && !reduced ? { scale } : undefined;
+  const grow = useIsClient() && !reduced ? { scale } : undefined;
   // 보기를 바꿀 때 지금 것은 작아지며 사라지고, 새 것은 커지며 들어온다
   const swap = reduced
     ? {}

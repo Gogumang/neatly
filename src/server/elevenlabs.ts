@@ -1,3 +1,4 @@
+import { delay } from "es-toolkit/promise";
 import "server-only";
 import type { SpokenWord } from "@/entities/talk/model";
 
@@ -10,8 +11,6 @@ export const elevenLabsEnabled = Boolean(process.env.ELEVENLABS_API_KEY);
 
 /** 요금제마다 동시에 보낼 수 있는 요청 수가 정해져 있다 (기본 3) */
 export const ELEVENLABS_CONCURRENCY = Number(process.env.ELEVENLABS_CONCURRENCY ?? 3);
-
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 type Alignment = {
   characters: string[];
@@ -57,7 +56,7 @@ export async function speakWithTimings(
 ): Promise<{ mp3: Buffer; words: SpokenWord[]; duration: number }> {
   let res = await request(text, voiceId);
   for (let wait = 700; !res.ok && res.status === 429 && wait <= 2800; wait *= 2) {
-    await sleep(wait);
+    await delay(wait);
     res = await request(text, voiceId);
   }
   if (!res.ok) throw new Error(`ElevenLabs ${res.status}: ${await res.text()}`);

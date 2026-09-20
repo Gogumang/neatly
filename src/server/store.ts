@@ -1,4 +1,5 @@
 import "server-only";
+import { omit } from "es-toolkit";
 import { assertId, isSafeId, newId } from "./dataDir";
 import { dbEnabled } from "./db";
 import { putMedia, readMedia } from "./media";
@@ -17,10 +18,7 @@ const repo = supabaseEnabled ? supabaseRepo : dbEnabled ? postgresRepo : localRe
 /** 화면에 넘겨도 되는 부분만 (수정 키와 비밀번호는 절대 내보내지 않는다) */
 export type PublicTalk = Omit<StoredTalk, "editKey" | "pass">;
 
-export function toPublicTalk(talk: StoredTalk): PublicTalk {
-  const { editKey: _key, pass: _pass, ...rest } = talk;
-  return rest;
-}
+export const toPublicTalk = (talk: StoredTalk): PublicTalk => omit(talk, ["editKey", "pass"]);
 
 export const saveTalk = (talk: StoredTalk) => repo.save(talk);
 

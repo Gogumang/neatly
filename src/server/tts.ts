@@ -1,3 +1,4 @@
+import { delay } from "es-toolkit/promise";
 import "server-only";
 
 const MODEL = process.env.TTS_MODEL ?? "gpt-4o-mini-tts";
@@ -29,8 +30,6 @@ class TtsError extends Error {
   }
 }
 
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-
 /** 요청이 너무 많거나(429) 서버 오류·시간 초과면 잠깐 쉬었다가 다시. 잘못된 요청(4xx)은 다시 해도 같다 */
 const retryDelay = (e: unknown) => {
   if (!(e instanceof TtsError)) return 500;
@@ -43,9 +42,9 @@ export async function synthesize(text: string, voice: string): Promise<Buffer> {
   try {
     return await requestSpeech(text, voice);
   } catch (e) {
-    const delay = retryDelay(e);
-    if (delay === null) throw e;
-    await sleep(delay);
+    const wait = retryDelay(e);
+    if (wait === null) throw e;
+    await delay(wait);
     return requestSpeech(text, voice);
   }
 }
