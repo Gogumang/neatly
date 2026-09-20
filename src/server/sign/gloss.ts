@@ -43,12 +43,13 @@ export async function signGloss(scenes: GlossScene[]): Promise<Map<string, strin
   if (targets.length === 0) return new Map();
 
   const user = targets.map((scene, i) => `${i + 1}. id=${scene.id}\n문장: ${scene.text}`).join("\n\n");
+  // 수어 자막은 있으면 좋은 것이라, 만들지 못해도 나레이션은 그대로 완성된다
   const raw = await chatJSON<RawGloss>({
     system: SIGN_SYSTEM_PROMPT,
     user: `아래 ${targets.length}개 장면을 한국수어 어순 단어로 옮겨줘.\n\n${user}`,
     schemaName: "sign_gloss",
     schema: glossSchema,
-  });
+  }).catch(() => null);
 
   const byId = new Map<string, string[]>();
   for (const scene of Array.isArray(raw?.scenes) ? raw.scenes : []) {
