@@ -1,6 +1,5 @@
 "use client";
 
-import { useFunnel } from "@use-funnel/browser";
 import { useRouter } from "next/navigation";
 import { DEFAULT_VOICE } from "@/entities/talk/voices";
 import { IconButton } from "@/shared/ui/IconButton/IconButton";
@@ -13,6 +12,7 @@ import { LengthStep } from "./LengthStep";
 import { PhotosStep } from "./PhotosStep";
 import { StoryStep } from "./StoryStep";
 import { SubjectStep } from "./SubjectStep";
+import { useMemoryFunnel } from "./useMemoryFunnel";
 import { VoiceStep } from "./VoiceStep";
 
 /**
@@ -21,7 +21,7 @@ import { VoiceStep } from "./VoiceStep";
  */
 export function CreateTalk() {
   const router = useRouter();
-  const funnel = useFunnel<CreateTalkSteps>({ id: "create-talk", initial: { step: "format", context: {} } });
+  const funnel = useMemoryFunnel<CreateTalkSteps>({ id: "create-talk", initial: { step: "format", context: {} } });
   const back = () => (funnel.index > 0 && funnel.step !== "generate" ? funnel.history.back() : router.push("/"));
 
   return (
