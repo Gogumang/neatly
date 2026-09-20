@@ -42,8 +42,6 @@ export function TalkBrowser({ talks }: { talks: Stored[] }) {
 
   return (
     <motion.section id="talks" ref={section} className={styles.section} style={grow}>
-      <h2 className={styles.heading}>모두의 나레이션</h2>
-
       {shown.length === 0 ? (
         <p className={styles.empty}>아직 올라온 나레이션이 없어요.</p>
       ) : (

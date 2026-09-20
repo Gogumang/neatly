@@ -10,13 +10,6 @@
   color: #ffffff;
 }
 
-.heading {
-  padding: 0 40px;
-  font-size: var(--t3);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-}
-
 /* 보기 전환: 화면 아래 가운데 떠 있는 알약 */
 .view {
   display: flex;
@@ -86,10 +79,6 @@
 @media (max-width: 640px) {
   .section {
     padding: 56px 0 48px;
-  }
-
-  .heading {
-    padding: 0 20px;
   }
 
   .strip {
