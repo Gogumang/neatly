@@ -1,5 +1,5 @@
 import "server-only";
-import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { createClient } from "@supabase/supabase-js";
 
 // SUPABASE_URL·SUPABASE_SERVICE_ROLE_KEY 가 있으면 Supabase(DB + 저장소), 없으면 로컬 파일(.data/)을 쓴다.
 // service role 키는 서버에서만 쓴다. 브라우저에는 서명된 업로드 주소만 건넨다.
@@ -10,11 +10,15 @@ const BUCKET = process.env.SUPABASE_BUCKET ?? "media";
 
 export const supabaseEnabled = Boolean(SUPABASE_URL && SERVICE_KEY);
 
-let client: SupabaseClient | null = null;
+// 우리 표는 stage 스키마에만 있다 (기존 public 표는 건드리지 않는다)
+const forStage = () =>
+  createClient(SUPABASE_URL ?? "", SERVICE_KEY ?? "", { auth: { persistSession: false }, db: { schema: "stage" } });
 
-export function supabase(): SupabaseClient {
+let client: ReturnType<typeof forStage> | null = null;
+
+export function supabase() {
   if (!SUPABASE_URL || !SERVICE_KEY) throw new Error("Supabase 환경변수가 없어요");
-  client ??= createClient(SUPABASE_URL, SERVICE_KEY, { auth: { persistSession: false } });
+  client ??= forStage();
   return client;
 }
 
