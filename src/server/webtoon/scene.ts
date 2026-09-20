@@ -11,7 +11,7 @@ const SYSTEM = [
   "",
   "먼저 작품 전체에서 변하지 않는 공통 설정을 정한다.",
   "- setting: 이야기가 벌어지는 장소와 시간대를 한국어 한 문장으로 (60자 이하).",
-  "- cast: 주인공 한두 명의 생김새를 나이대·머리모양·옷차림까지 콕 집어 한국어 한 문장으로 (80자 이하). 이름은 쓰지 않는다.",
+  "- cast: 주인공은 사람이 아니라 동물 캐릭터다. 어떤 동물이 무슨 옷을 입었는지 콕 집어 한국어 한 문장으로 (80자 이하). 예: 안경 쓴 곰이 헐렁한 후드티를 입고 있다. 이름은 쓰지 않는다.",
   "- palette: 작품 전체를 감싸는 색 서너 가지를 한국어로 (30자 이하).",
   "",
   "그다음 장면마다 그 칸에 그릴 그림을 정한다.",
@@ -27,7 +27,7 @@ const schema = {
   type: "object",
   properties: {
     setting: { type: "string", description: "장소와 시간대" },
-    cast: { type: "string", description: "주인공 생김새" },
+    cast: { type: "string", description: "주인공 동물 캐릭터의 생김새" },
     palette: { type: "string", description: "작품 전체 색" },
     panels: {
       type: "array",
