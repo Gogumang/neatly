@@ -13,6 +13,15 @@
   animation-delay: calc(var(--i) * 14ms);
 }
 
+/* 접히지 않는 빈칸 (여기서 줄이 바뀐다) */
+.space {
+  white-space: pre-wrap;
+}
+
+.em {
+  font-weight: 700;
+}
+
 .sung {
   color: var(--grey900);
 }

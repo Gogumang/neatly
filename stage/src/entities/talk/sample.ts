@@ -5,6 +5,7 @@ export const sampleTalk: Talk = {
   id: "sample",
   title: "읽히지 않는 글을, 보고 싶은 나레이션으로",
   summary: "줄글 한 편이 나레이션이 되기까지",
+  coverUrl: "/sample-cover.jpg",
   author: { name: "또박 팀", role: "AI Championship 2026" },
   segments: [
     {
@@ -25,9 +26,9 @@ export const sampleTalk: Talk = {
       template: {
         type: "chat",
         messages: [
-          { name: "심사위원", avatar: "🧑‍⚖️", text: "제출물이 너무 많네요… 설명은 첫 줄만 볼게요." },
-          { name: "우리 팀", avatar: "🧑‍💻", text: "설명 2,000자 열심히 썼는데 😢", mine: true },
-          { name: "심사위원", avatar: "🧑‍⚖️", text: "그래서 이게 무슨 문제를 푸는 거죠?" },
+          { name: "심사위원", text: "제출물이 너무 많네요… 설명은 첫 줄만 볼게요." },
+          { name: "우리 팀", text: "설명 2,000자 열심히 썼는데 😢", mine: true },
+          { name: "심사위원", text: "그래서 이게 무슨 문제를 푸는 거죠?" },
         ],
       },
     },
@@ -66,9 +67,9 @@ export const sampleTalk: Talk = {
         screen: {
           title: "새 나레이션 만들기",
           items: [
-            { emoji: "📝", title: "원고 붙여넣기", description: "AI로 문제를 해결한 이야기를 그대로" },
-            { emoji: "🖼️", title: "스크린샷 추가", description: "있으면 장면에 넣어드려요" },
-            { emoji: "🎙️", title: "목소리 고르기", description: "차분한 목소리 · 밝은 목소리" },
+            { title: "원고 붙여넣기", description: "AI로 문제를 해결한 이야기를 그대로" },
+            { title: "스크린샷 추가", description: "있으면 장면에 넣어드려요" },
+            { title: "목소리 고르기", description: "차분한 목소리 · 밝은 목소리" },
           ],
         },
       },
@@ -86,9 +87,9 @@ export const sampleTalk: Talk = {
         screen: {
           title: "장면 12개를 만들었어요",
           items: [
-            { emoji: "💬", title: "문제 상황", description: "대화 장면으로 재현" },
-            { emoji: "🔢", title: "성과 수치", description: "숫자가 올라가는 장면" },
-            { emoji: "✨", title: "핵심 키워드", description: "큰 글씨로 강조" },
+            { title: "문제 상황", description: "대화 장면으로 재현" },
+            { title: "성과 수치", description: "숫자가 올라가는 장면" },
+            { title: "핵심 키워드", description: "큰 글씨로 강조" },
           ],
         },
       },
@@ -99,9 +100,9 @@ export const sampleTalk: Talk = {
       template: {
         type: "chat",
         messages: [
-          { name: "AI 코치", avatar: "🤖", text: "성과를 숫자로 말할 수 있을까요? 예를 들면 처리 시간이요." },
-          { name: "나", avatar: "🙂", text: "3시간 걸리던 일이 10분으로 줄었어요!", mine: true },
-          { name: "AI 코치", avatar: "🤖", text: "좋아요, 숫자 장면으로 넣을게요 ✨" },
+          { name: "AI 코치", text: "성과를 숫자로 말할 수 있을까요? 예를 들면 처리 시간이요." },
+          { name: "나", text: "3시간 걸리던 일이 10분으로 줄었어요!", mine: true },
+          { name: "AI 코치", text: "좋아요, 숫자 장면으로 넣을게요 ✨" },
         ],
       },
     },
@@ -125,9 +126,9 @@ export const sampleTalk: Talk = {
         screen: {
           title: "모두의 나레이션",
           items: [
-            { emoji: "🚨", title: "새벽 장애를 AI가 먼저 알려줬어요", description: "♥ 128" },
-            { emoji: "🧾", title: "영수증 정리를 10분 만에", description: "♥ 96" },
-            { emoji: "📚", title: "논문 읽기 모임을 AI와 함께", description: "♥ 71" },
+            { title: "새벽 장애를 AI가 먼저 알려줬어요", description: "♥ 128" },
+            { title: "영수증 정리를 10분 만에", description: "♥ 96" },
+            { title: "논문 읽기 모임을 AI와 함께", description: "♥ 71" },
           ],
         },
       },

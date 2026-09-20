@@ -5,14 +5,6 @@ export function rememberEditKey(talkId: string, editKey: string) {
   try {
     localStorage.setItem(key(talkId), editKey);
   } catch {
-    // 저장소를 못 쓰면 이 나레이션에 수어 영상을 나중에 붙일 수 없을 뿐이다
-  }
-}
-
-export function readEditKey(talkId: string): string | null {
-  try {
-    return localStorage.getItem(key(talkId));
-  } catch {
-    return null;
+    // 저장소를 못 쓰면 이 브라우저가 만든 나레이션임을 기억하지 못할 뿐이다
   }
 }

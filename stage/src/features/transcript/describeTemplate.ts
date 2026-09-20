@@ -11,7 +11,7 @@ function describeMockup({ media, screen }: Extract<Template, { type: "mockup" }>
   if (screen) {
     lines.push(screen.title);
     for (const item of screen.items) {
-      lines.push([item.emoji, item.title, item.description && `— ${item.description}`].filter(isText).join(" "));
+      lines.push([item.title, item.description && `— ${item.description}`].filter(isText).join(" "));
     }
   }
   return lines;

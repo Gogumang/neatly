@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import type { Template } from "@/entities/talk/model";
 import { SceneTemplate } from "@/features/scene-templates/SceneTemplate";
+import { Icon } from "@/shared/ui/Icon/Icon";
 import { KaraokeLine } from "./KaraokeLine";
 import stage from "./Stage.module.css";
 import { StageFx } from "./StageFx";
@@ -121,7 +122,13 @@ function StageBar({
         onClick={() => voice.toggle(subtitle)}
         aria-label={voice.speaking ? "미리듣기 멈추기" : "이 장면 들어보기"}
       >
-        {voice.speaking ? <VoiceWave playing /> : "▶ 들어보기"}
+        {voice.speaking ? (
+          <VoiceWave playing />
+        ) : (
+          <>
+            <Icon name="play" size={12} /> 들어보기
+          </>
+        )}
       </button>
     </div>
   );

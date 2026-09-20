@@ -1,5 +1,5 @@
 import "server-only";
-import { assertId, isSafeId } from "./dataDir";
+import { assertId, isSafeId, newId } from "./dataDir";
 import { dbEnabled } from "./db";
 import { putMedia, readMedia } from "./media";
 import { supabaseEnabled } from "./supabase";
@@ -50,6 +50,18 @@ export async function likeTalk(id: string): Promise<number> {
 export async function saveAudio(id: string, segId: string, mp3: Buffer): Promise<string> {
   assertId(id, segId);
   return putMedia(`audio/${id}/${segId}.mp3`, mp3, "audio/mpeg");
+}
+
+/** AI 가 그린 표지 그림을 저장하고 주소를 돌려준다. 다시 그리면 이름이 달라져 캐시가 헷갈리지 않는다 */
+export async function saveCover(id: string, jpeg: Buffer): Promise<string> {
+  assertId(id);
+  return putMedia(`covers/${id}-${newId()}.jpg`, jpeg, "image/jpeg");
+}
+
+/** AI 가 그린 화자 얼굴 */
+export async function saveFace(id: string, jpeg: Buffer): Promise<string> {
+  assertId(id);
+  return putMedia(`covers/${id}-face-${newId()}.jpg`, jpeg, "image/jpeg");
 }
 
 export async function readAudio(id: string, segId: string): Promise<Buffer | null> {

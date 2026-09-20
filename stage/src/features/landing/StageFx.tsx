@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import stage from "./Stage.module.css";
+import stage from "./StageFx.module.css";
 import { DEMO_STEPS } from "./script";
 
 const SWEEP = { duration: 0.9, ease: [0.16, 1, 0.3, 1] } as const;

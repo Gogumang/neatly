@@ -30,7 +30,7 @@ const templateSchema = {
         anyOf: [
           obj({
             title: str,
-            items: { type: "array", items: obj({ emoji: str, title: str, description: nullableStr }) },
+            items: { type: "array", items: obj({ title: str, description: nullableStr }) },
           }),
           { type: "null" },
         ],
@@ -40,7 +40,7 @@ const templateSchema = {
       type: { type: "string", enum: ["chat"] },
       messages: {
         type: "array",
-        items: obj({ name: str, avatar: str, text: str, mine: { type: "boolean" } }),
+        items: obj({ name: str, text: str, mine: { type: "boolean" } }),
       },
     }),
     obj({ type: { type: "string", enum: ["speaker"] } }),

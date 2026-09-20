@@ -1,7 +1,7 @@
 "use client";
 
 import { MotionConfig, motion } from "motion/react";
-import styles from "./Landing.module.css";
+import styles from "./Hero.module.css";
 
 const LINES = [
   ["글을", "붙여넣으면"],
@@ -23,11 +23,6 @@ export function HeroTitle() {
   return (
     <MotionConfig reducedMotion="user">
       <div className={styles.heroCopy}>
-        <motion.span className={styles.eyebrow} {...rise(order++)}>
-          <span className={styles.eyebrowDot} aria-hidden />
-          읽히지 않던 글에 목소리를
-        </motion.span>
-
         <h1 className={styles.heroTitle}>
           {LINES.map((line) => (
             <span className={styles.heroLine} key={line.join(" ")}>

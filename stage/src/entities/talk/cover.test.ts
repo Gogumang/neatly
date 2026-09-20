@@ -12,6 +12,17 @@ const talk = (patch: Partial<Talk> = {}): Talk => ({
 });
 
 describe("talkCover", () => {
+  it("AI 표지가 있으면 올린 이미지보다 먼저 쓴다", () => {
+    const cover = talkCover(
+      talk({
+        coverUrl: "/api/media/covers/abc.jpg",
+        author: { name: "a", avatarUrl: "/avatar.png" },
+        segments: [{ id: "s1", text: "", template: { type: "image", src: "/shot.png" } }],
+      }),
+    );
+    expect(cover).toEqual({ kind: "image", src: "/api/media/covers/abc.jpg" });
+  });
+
   it("올린 이미지가 있으면 그 이미지", () => {
     const cover = talkCover(
       talk({

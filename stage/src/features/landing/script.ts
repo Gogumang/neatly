@@ -8,8 +8,8 @@ export const DEMO_STEPS: { source: string; subtitle: string; template: Template 
     template: {
       type: "chat",
       messages: [
-        { name: "담당자", avatar: "🧾", text: "오전 내내 엑셀에 옮겨 적어요" },
-        { name: "팀장", avatar: "🙂", text: "급한 결제 문의는요?", mine: true },
+        { name: "담당자", text: "오전 내내 엑셀에 옮겨 적어요" },
+        { name: "팀장", text: "급한 결제 문의는요?", mine: true },
       ],
     },
   },
@@ -26,8 +26,8 @@ export const DEMO_STEPS: { source: string; subtitle: string; template: Template 
       screen: {
         title: "슬랙 분류 봇",
         items: [
-          { emoji: "📩", title: "새 문의 도착", description: "들어오자마자 분류" },
-          { emoji: "⚡", title: "긴급도 표시", description: "높으면 바로 멘션" },
+          { title: "새 문의 도착", description: "들어오자마자 분류" },
+          { title: "긴급도 표시", description: "높으면 바로 멘션" },
         ],
       },
     },

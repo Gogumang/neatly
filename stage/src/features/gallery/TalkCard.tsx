@@ -4,11 +4,13 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Talk } from "@/entities/talk/model";
 import { CardPreview } from "./CardPreview";
-import styles from "./TalkCarousel.module.css";
+import styles from "./TalkCard.module.css";
 import { TalkCoverImage } from "./TalkCoverImage";
 
-/** 목록 카드. 마우스를 올리면 미리보기가 재생된다 (터치 기기는 그냥 썸네일) */
-export function TalkCard({ talk }: { talk: Talk }) {
+type Props = { talk: Talk; focused?: boolean; onSelect?: () => void };
+
+/** 목록 카드. 가운데(또는 마우스를 올린) 카드는 미리보기가 재생된다 */
+export function TalkCard({ talk, focused, onSelect }: Props) {
   const [hovered, setHovered] = useState(false);
   return (
     <Link
@@ -16,12 +18,15 @@ export function TalkCard({ talk }: { talk: Talk }) {
       className={styles.card}
       onPointerEnter={(e) => e.pointerType === "mouse" && setHovered(true)}
       onPointerLeave={() => setHovered(false)}
-      onFocus={() => setHovered(true)}
+      onFocus={() => {
+        setHovered(true);
+        onSelect?.();
+      }}
       onBlur={() => setHovered(false)}
     >
       {/* 제목·만든이는 썸네일 이미지 안에 들어 있다 */}
       <TalkCoverImage talk={talk} className={styles.image} />
-      {hovered && <CardPreview talk={talk} />}
+      {(hovered || focused) && <CardPreview talk={talk} />}
     </Link>
   );
 }

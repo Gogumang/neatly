@@ -21,31 +21,6 @@
   gap: 22px;
 }
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 15px;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.55);
-  box-shadow:
-    inset 0 0 0 1px var(--greyOpacity200),
-    0 6px 18px -12px var(--greyOpacity300);
-  backdrop-filter: blur(10px);
-  color: var(--grey700);
-  font-size: var(--t7);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-
-.eyebrowDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--blue500);
-  box-shadow: 0 0 0 4px var(--blue50);
-}
-
 .heroTitle {
   max-width: 16ch;
   color: var(--grey900);
@@ -91,21 +66,6 @@
   align-items: center;
   gap: 16px;
   width: 100%;
-}
-
-/* 지금까지 쌓인 숫자 */
-.stat {
-  color: var(--grey500);
-  font-size: var(--t7);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  word-break: keep-all;
-}
-
-.stat strong {
-  color: var(--grey800);
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
 }
 
 .textLink {

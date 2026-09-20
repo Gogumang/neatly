@@ -20,7 +20,7 @@ function AppScreen({ screen }: { screen: Screen }) {
       <ul className={styles.list}>
         {screen.items.map((item, i) => (
           <motion.li key={`${i}-${item.title}`} {...riseIn(0.4 + i * 0.14)}>
-            <ListRow left={item.emoji} top={item.title} bottom={item.description} />
+            <ListRow top={item.title} bottom={item.description} />
           </motion.li>
         ))}
       </ul>

@@ -50,7 +50,7 @@ export function sceneFromSentence(input: string): { subtitle: string; template: 
   if (said) {
     return {
       subtitle: emphasize(text, said),
-      template: { type: "chat", messages: [{ name: "그때", avatar: "💬", text: said }] },
+      template: { type: "chat", messages: [{ name: "그때", text: said }] },
     };
   }
 

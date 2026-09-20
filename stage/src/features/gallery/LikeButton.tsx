@@ -26,7 +26,7 @@ function rememberLiked(id: string) {
   }
 }
 
-export function LikeButton({ id, initial }: { id: string; initial: number }) {
+export function LikeButton({ id, initial, className }: { id: string; initial: number; className?: string }) {
   const [likes, setLikes] = useState(initial);
   const [liked, setLiked] = useState(false);
 
@@ -44,7 +44,7 @@ export function LikeButton({ id, initial }: { id: string; initial: number }) {
   return (
     <motion.button
       type="button"
-      className={cx(styles.like, liked && styles.liked)}
+      className={cx(styles.like, liked && styles.liked, className)}
       onClick={like}
       aria-pressed={liked}
       aria-label={`좋아요 ${likes}개`}

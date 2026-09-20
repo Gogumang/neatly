@@ -18,7 +18,7 @@ export function ChatScene({ messages }: { messages: Message[] }) {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ ...spring, delay: 0.15 + i * 0.55 }}
         >
-          <span className={styles.avatar}>{m.avatar ?? m.name.slice(0, 1)}</span>
+          <span className={styles.avatar}>{m.name.slice(0, 1)}</span>
           <div className={styles.body}>
             <span className={styles.name}>{m.name}</span>
             <span className={styles.bubble}>{m.text}</span>

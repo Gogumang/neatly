@@ -3,27 +3,22 @@ import { isSafeId, newId } from "./dataDir";
 import { putMedia, readMedia } from "./media";
 import { publicPrefix, signedUploadUrl, supabaseEnabled } from "./supabase";
 
-// 사용자가 올린 파일: 이미지(프로필 사진·스크린샷), 영상(수어 통역)
+// 사용자가 올린 파일: 이미지(프로필 사진·스크린샷)
 // Supabase 가 있으면 브라우저가 서명된 주소로 직접 올리고(서버 요청 크기 제한 회피), 없으면 서버가 받아 로컬에 둔다.
 
 const IMAGE_TYPES = { "image/png": "png", "image/jpeg": "jpg", "image/webp": "webp", "image/gif": "gif" } as const;
-const VIDEO_TYPES = { "video/mp4": "mp4", "video/webm": "webm", "video/quicktime": "mov" } as const;
-const TYPES = { ...IMAGE_TYPES, ...VIDEO_TYPES };
+const TYPES = IMAGE_TYPES;
 
 type ImageType = keyof typeof IMAGE_TYPES;
-type VideoType = keyof typeof VIDEO_TYPES;
 
 export const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
-export const MAX_VIDEO_BYTES = 100 * 1024 * 1024;
 
 export const isImageType = (type: string): type is ImageType => type in IMAGE_TYPES;
-export const isVideoType = (type: string): type is VideoType => type in VIDEO_TYPES;
-export const isMediaType = (type: string): type is ImageType | VideoType => isImageType(type) || isVideoType(type);
 
 const MIME_BY_EXT: Record<string, string> = Object.fromEntries(Object.entries(TYPES).map(([mime, ext]) => [ext, mime]));
-const NAME = /^[a-z0-9-]+\.(png|jpg|webp|gif|mp4|webm|mov)$/i;
+const NAME = /^[a-z0-9-]+\.(png|jpg|webp|gif)$/i;
 
-const newName = (type: ImageType | VideoType) => `${newId()}.${TYPES[type]}`;
+const newName = (type: ImageType) => `${newId()}.${TYPES[type]}`;
 
 /** 우리가 저장한 업로드 파일이면 파일 이름, 아니면 null. 로컬 /api/uploads/… 또는 Supabase 공개 주소 …/uploads/… */
 function uploadName(url: unknown): string | null {
@@ -37,14 +32,12 @@ function uploadName(url: unknown): string | null {
 export const isUploadUrl = (url: unknown): url is string => uploadName(url) !== null;
 
 /** 서버가 가진 파일을 저장하고 주소를 돌려준다 (링크에서 가져온 이미지 등) */
-export async function saveUpload(bytes: Buffer, type: ImageType | VideoType): Promise<string> {
+export async function saveUpload(bytes: Buffer, type: ImageType): Promise<string> {
   return putMedia(`uploads/${newName(type)}`, bytes, type);
 }
 
 /** 브라우저가 직접 올릴 곳. Supabase 가 없으면 null (서버로 올리면 된다) */
-export async function directUploadTarget(
-  type: ImageType | VideoType,
-): Promise<{ uploadUrl: string; url: string } | null> {
+export async function directUploadTarget(type: ImageType): Promise<{ uploadUrl: string; url: string } | null> {
   if (!supabaseEnabled) return null;
   const objectPath = `uploads/${newName(type)}`;
   return { uploadUrl: await signedUploadUrl(objectPath), url: `${publicPrefix()}${objectPath}` };

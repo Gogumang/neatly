@@ -12,7 +12,6 @@ export function LengthStep({ defaultValue, onNext }: Props) {
   return (
     <StepLayout
       title="얼마나 길게 만들까요?"
-      description="긴 글은 핵심만 뽑아서 만들어요."
       onSubmit={() => onNext(length)}
       cta={
         <Button type="submit" display="block">

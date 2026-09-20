@@ -4,7 +4,7 @@ import { riseIn, spring } from "./motion";
 import { RollingDigit } from "./RollingDigit";
 import styles from "./RollingNumberScene.module.css";
 
-type Props = Extract<Template, { type: "rollingNumber" }>;
+type Props = Extract<Template, { type: "rollingNumber" }> & { still?: boolean };
 
 /** "2,000" → 자릿수는 굴리고 쉼표는 그대로 */
 function toGlyphs(from: number, to: number) {
@@ -23,7 +23,7 @@ function toGlyphs(from: number, to: number) {
   });
 }
 
-export function RollingNumberScene({ from = 0, to, prefix, suffix, caption }: Props) {
+export function RollingNumberScene({ from = 0, to, prefix, suffix, caption, still }: Props) {
   return (
     <div className={styles.root}>
       <div className={styles.number}>
@@ -32,6 +32,10 @@ export function RollingNumberScene({ from = 0, to, prefix, suffix, caption }: Pr
           "sep" in g ? (
             <span key={g.key} className={styles.separator}>
               {g.sep}
+            </span>
+          ) : still ? (
+            <span key={g.key} className={styles.separator}>
+              {g.to}
             </span>
           ) : (
             <RollingDigit key={g.key} from={g.from} to={g.to} duration={g.duration} />

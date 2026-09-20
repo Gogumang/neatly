@@ -14,7 +14,6 @@ export function VoiceStep({ defaultValue, onNext }: Props) {
   return (
     <StepLayout
       title="어떤 목소리로 들려줄까요?"
-      description="구슬을 누르면 미리 들어볼 수 있어요."
       onSubmit={() => onNext(voice)}
       cta={
         <Button type="submit" display="block">

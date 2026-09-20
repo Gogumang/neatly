@@ -22,7 +22,6 @@ export function StoryStep({ genre, defaultValue, error, onNext }: Props) {
   return (
     <StepLayout
       title={question}
-      description="글을 붙여넣거나, 블로그·깃허브 링크를 넣어도 돼요."
       error={error}
       onSubmit={() => valid && onNext(text)}
       cta={
@@ -38,7 +37,7 @@ export function StoryStep({ genre, defaultValue, error, onNext }: Props) {
         value={text}
         onChange={(e) => setText(e.target.value)}
         hasError={tooShort || text.length > MAX}
-        help={link ? "🔗 링크에서 글과 이미지를 가져올게요" : tooShort ? `${MIN}자 이상 써주세요` : undefined}
+        help={link ? "링크에서 글과 이미지를 가져올게요" : tooShort ? `${MIN}자 이상 써주세요` : undefined}
         helpRight={link ? undefined : `${text.length.toLocaleString()} / ${MAX.toLocaleString()}`}
       />
       <Button

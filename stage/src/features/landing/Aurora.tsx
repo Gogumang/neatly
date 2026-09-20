@@ -1,8 +1,9 @@
 "use client";
 
-import { type MotionValue, motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { type MotionValue, motion, useScroll, useTransform } from "motion/react";
 import styles from "./Aurora.module.css";
 import { usePointerDepth } from "./usePointerDepth";
+import { useReducedOnClient } from "./useReducedOnClient";
 
 type Depth = { px: MotionValue<number>; py: MotionValue<number>; scrollY: MotionValue<number> };
 
@@ -18,13 +19,14 @@ function useDepth({ px, py, scrollY }: Depth, pull: number, drag: number) {
 
 /** 첫 화면 배경: 천천히 흐르는 오로라 위에, 스크롤·포인터로 어긋나는 깊이 층을 얹는다 */
 export function Aurora() {
-  const reduced = useReducedMotion() ?? false;
+  // 서버가 그린 style 과 어긋나지 않게, 브라우저에 붙은 뒤부터 판단한다
+  const reduced = useReducedOnClient();
   const { px, py } = usePointerDepth(!reduced);
   const { scrollY } = useScroll();
   const depth = { px, py, scrollY };
   const far = useDepth(depth, -12, 0.07);
   const near = useDepth(depth, 26, 0.18);
-  const opacity = useTransform(scrollY, [0, 700], [1, 0.32]);
+  const opacity = useTransform(scrollY, (v) => Math.max(0.32, 1 - (v / 700) * 0.68));
 
   return (
     <div className={styles.aurora} aria-hidden>

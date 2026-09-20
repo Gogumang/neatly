@@ -10,6 +10,14 @@
 
 html {
   height: 100%;
+  /* 메인을 구획 단위로 넘긴다. 가까이서 멈췄을 때만 맞춰 붙어서 무대 연출은 그대로 흐른다 */
+  scroll-snap-type: y proximity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-snap-type: none;
+  }
 }
 
 body {

@@ -2,6 +2,7 @@
 export const GENRES = [
   {
     id: "case",
+    color: "#64A8FF",
     name: "문제 해결 사례",
     flow: "문제 → 시도 → 해결 → 성과",
     question: "AI로 어떤 문제를 해결했나요?",
@@ -9,6 +10,7 @@ export const GENRES = [
   },
   {
     id: "project",
+    color: "#7AEA8F",
     name: "프로젝트 소개",
     flow: "왜 만들었나 → 핵심 기능 → 데모 → 앞으로",
     question: "어떤 프로젝트를 소개할까요?",
@@ -16,6 +18,7 @@ export const GENRES = [
   },
   {
     id: "retro",
+    color: "#FF8FAA",
     name: "회고·후기",
     flow: "있었던 일 → 배운 것 → 아쉬운 점 → 다음에는",
     question: "어떤 경험을 돌아볼까요?",
@@ -23,6 +26,7 @@ export const GENRES = [
   },
   {
     id: "explain",
+    color: "#FFD66B",
     name: "기술 설명",
     flow: "왜 알아야 하나 → 개념 → 원리 → 예시 → 정리",
     question: "어떤 기술을 설명할까요?",
@@ -30,6 +34,7 @@ export const GENRES = [
   },
   {
     id: "tutorial",
+    color: "#C9A7FF",
     name: "튜토리얼",
     flow: "무엇을 만드나 → 준비 → 단계별 따라하기 → 결과",
     question: "무엇을 따라 하게 할까요?",

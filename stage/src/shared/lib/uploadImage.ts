@@ -2,7 +2,7 @@ import { uploadDirect } from "./uploadFile";
 
 /** 이미지 파일을 올리고 URL 을 받는다 */
 export async function uploadImage(file: File): Promise<string> {
-  const direct = await uploadDirect(file, { kind: "image" });
+  const direct = await uploadDirect(file);
   if (direct) return direct;
   const form = new FormData();
   form.append("file", file);

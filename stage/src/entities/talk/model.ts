@@ -16,12 +16,12 @@ export type Template =
       media?: { kind: "image" | "video"; src: string };
       screen?: {
         title: string;
-        items: { emoji?: string; title: string; description?: string }[];
+        items: { title: string; description?: string }[];
       };
     }
   | {
       type: "chat";
-      messages: { name: string; avatar?: string; text: string; mine?: boolean }[];
+      messages: { name: string; text: string; mine?: boolean }[];
     }
   /** 발표자 프로필 사진 (Talk.author.avatarUrl) */
   | { type: "speaker" }
@@ -41,6 +41,8 @@ export type Segment = {
   words?: SpokenWord[];
   /** 나레이션 길이 (초) */
   duration?: number;
+  /** 이 장면을 한국수어 어순으로 옮긴 단어들 */
+  sign?: string[];
 };
 
 export type Talk = {
@@ -52,7 +54,7 @@ export type Talk = {
   title: string;
   summary: string;
   author: { name: string; role?: string; avatarUrl?: string };
-  /** 나레이션 전체를 따라 통역한 수어 영상 (나레이션 시작과 동시에 시작) */
-  signVideoUrl?: string;
+  /** AI 가 그린 표지 그림 */
+  coverUrl?: string;
   segments: Segment[];
 };

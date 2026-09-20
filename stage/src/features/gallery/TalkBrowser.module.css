@@ -1,0 +1,107 @@
+/* 메인 아래쪽 나레이션 모음. 검정 바탕에 표지만 떠 있게 한다 */
+.section {
+  display: flex;
+  min-height: 100dvh;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 20px;
+  padding: 72px 0;
+  scroll-snap-align: start;
+  border-radius: 32px;
+  background: #000000;
+  color: #ffffff;
+}
+
+.heading {
+  padding: 0 40px;
+  font-size: var(--t3);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+/* 보기 전환: 화면 아래 가운데 떠 있는 알약 */
+.view {
+  display: flex;
+  margin: 36px auto 0;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(38, 38, 40, 0.9);
+  color: #ffffff;
+  font-family: var(--font);
+  font-size: var(--t6);
+  font-weight: 600;
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.view:hover {
+  background: rgba(58, 58, 62, 0.95);
+}
+
+.viewIcon {
+  display: flex;
+  opacity: 0.85;
+}
+
+.rows {
+  max-width: 760px;
+  margin: 40px auto 0;
+  list-style: none;
+}
+
+/* 펼쳐보기: 같은 크기의 표지가 가로 한 줄로 이어진다 */
+.strip {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: min(62vh, 520px);
+  margin-top: 28px;
+  padding: 0 40px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  list-style: none;
+  cursor: grab;
+}
+
+.strip::-webkit-scrollbar {
+  display: none;
+}
+
+.strip:active {
+  cursor: grabbing;
+}
+
+.stripItem {
+  flex: 0 0 clamp(220px, 27vw, 360px);
+}
+
+.empty {
+  padding: 120px 0;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .section {
+    margin: 0 12px;
+    padding: 56px 0 48px;
+  }
+
+  .heading {
+    padding: 0 20px;
+  }
+
+  .strip {
+    height: min(58vh, 420px);
+    gap: 12px;
+    padding: 0 20px;
+  }
+
+  .stripItem {
+    flex-basis: 62vw;
+  }
+}

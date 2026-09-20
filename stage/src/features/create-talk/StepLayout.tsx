@@ -7,9 +7,9 @@ type Props = {
   title: ReactNode;
   description?: ReactNode;
   error?: string;
-  /** 아래 고정 버튼 영역 */
-  cta: ReactNode;
-  onSubmit: () => void;
+  /** 아래 고정 버튼 영역. 눌러서 바로 넘어가는 단계에는 없다 */
+  cta?: ReactNode;
+  onSubmit?: () => void;
   children: ReactNode;
 };
 
@@ -23,7 +23,7 @@ export function StepLayout({ title, description, error, cta, onSubmit, children 
       transition={{ type: "spring", stiffness: 320, damping: 32 }}
       onSubmit={(e) => {
         e.preventDefault();
-        onSubmit();
+        onSubmit?.();
       }}
     >
       <Top title={title} lower={description} />
@@ -31,7 +31,7 @@ export function StepLayout({ title, description, error, cta, onSubmit, children 
         {children}
         {error && <p className={styles.error}>{error}</p>}
       </div>
-      <div className={styles.cta}>{cta}</div>
+      {cta && <div className={styles.cta}>{cta}</div>}
     </motion.form>
   );
 }

@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 import type { Talk } from "@/entities/talk/model";
-import { SignUploadLink } from "@/features/sign/SignUploadLink";
 import { Button } from "@/shared/ui/Button/Button";
 import { Icon } from "@/shared/ui/Icon/Icon";
 import { Top } from "@/shared/ui/Top/Top";
@@ -42,7 +41,6 @@ export function PlayerCover({ talk, ended, onPlay }: { talk: Talk; ended: boolea
         <Link href={`/talks/${talk.id}/transcript`} className={styles.next}>
           대본으로 보기 ›
         </Link>
-        {!talk.signVideoUrl && <SignUploadLink talkId={talk.id} className={styles.next} />}
       </motion.div>
     </motion.div>
   );

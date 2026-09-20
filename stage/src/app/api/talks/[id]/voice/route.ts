@@ -36,6 +36,11 @@ export async function POST(request: Request, ctx: RouteContext<"/api/talks/[id]/
   const voice = limitAsync((seg: Segment) => voiceScene(id, seg, voiceId), CONCURRENCY);
   const segments = await Promise.all(talk.segments.map(voice));
   const voicedCount = segments.filter((s) => s.audioUrl).length;
-  await updateTalk(id, () => ({ segments, voiced: true }));
+  // 목소리를 입히는 동안 수어 자막이 먼저 저장됐을 수 있다. 최신 장면에 소리만 얹는다
+  const sound = new Map(segments.map((s) => [s.id, { audioUrl: s.audioUrl, words: s.words, duration: s.duration }]));
+  await updateTalk(id, (latest) => ({
+    segments: latest.segments.map((seg) => ({ ...seg, ...sound.get(seg.id) })),
+    voiced: true,
+  }));
   return Response.json({ ok: true, voiced: voicedCount, total: segments.length });
 }

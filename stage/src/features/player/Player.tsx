@@ -5,7 +5,6 @@ import { useState } from "react";
 import type { Talk } from "@/entities/talk/model";
 import { SceneTemplate } from "@/features/scene-templates/SceneTemplate";
 import { SignPanel } from "@/features/sign/SignPanel";
-import { cx } from "@/shared/lib/cx";
 import styles from "./Player.module.css";
 import { PlayerControls } from "./PlayerControls";
 import { PlayerCover } from "./PlayerCover";
@@ -20,8 +19,8 @@ export function Player({ talk }: { talk: Talk }) {
   const started = status !== "idle";
   const covered = status === "idle" || status === "ended";
   const [signOn, setSignOn] = useState(false);
-  const [signLarge, setSignLarge] = useState(false);
-  const showSign = Boolean(talk.signVideoUrl) && signOn;
+  // 수어 어순 자막은 AI 가 만들어 둔 나레이션에만 있다 (예전 나레이션에는 없다)
+  const hasSign = talk.segments.some((seg) => seg.sign?.length);
 
   // 직접 장면을 옮겼을 때만 위치를 알린다. 자동으로 넘어갈 때 알리면 나레이션과 겹친다.
   const [movedTo, setMovedTo] = useState<number | null>(null);
@@ -36,10 +35,7 @@ export function Player({ talk }: { talk: Talk }) {
   return (
     // 운영체제의 '동작 줄이기' 설정이면 이동·확대 애니메이션을 끈다 (투명도 전환만 남는다)
     <MotionConfig reducedMotion="user">
-      <div
-        className={cx(styles.stage, showSign && styles.withSign, showSign && signLarge && styles.signLarge)}
-        data-theme={segment.theme ?? "light"}
-      >
+      <div className={styles.stage} data-theme={segment.theme ?? "light"}>
         {/* 표지가 덮고 있는 동안 뒤의 버튼에 초점·스크린 리더가 닿지 않게 */}
         <div className={styles.main} inert={covered}>
           <PlayerProgress segments={talk.segments} index={index} ended={status === "ended"} go={move} />
@@ -57,29 +53,18 @@ export function Player({ talk }: { talk: Talk }) {
             </AnimatePresence>
           </div>
 
+          {started && signOn && <SignPanel segment={segment} playing={status === "playing"} clock={playback.clock} />}
           <Subtitle segment={segment} visible={started} playing={status === "playing"} clock={playback.clock} />
           <PlayerControls
             talk={talk}
             {...playback}
             go={move}
-            sign={talk.signVideoUrl ? { on: signOn, toggle: () => setSignOn((v) => !v) } : undefined}
+            sign={hasSign ? { on: signOn, toggle: () => setSignOn((v) => !v) } : undefined}
           />
           <p className={styles.srOnly} aria-live="polite">
             {movedTo === index ? `장면 ${index + 1} / ${last + 1}` : ""}
           </p>
         </div>
-
-        {showSign && talk.signVideoUrl && (
-          <SignPanel
-            className={styles.sign}
-            src={talk.signVideoUrl}
-            segments={talk.segments}
-            index={index}
-            playing={status === "playing"}
-            large={signLarge}
-            onResize={() => setSignLarge((v) => !v)}
-          />
-        )}
 
         <AnimatePresence>
           {covered && <PlayerCover talk={talk} ended={status === "ended"} onPlay={restart} />}

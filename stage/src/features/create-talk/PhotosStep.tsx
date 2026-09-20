@@ -21,7 +21,6 @@ export function PhotosStep({ defaultValue, onNext }: Props) {
   return (
     <StepLayout
       title="사진이 있으면 더 생생해져요"
-      description="없어도 괜찮아요. 글만으로도 나레이션을 만들 수 있어요."
       error={avatar.error ?? images.error}
       onSubmit={() => onNext({ avatarUrl, imageUrls, authorName: authorName.trim() || undefined })}
       cta={

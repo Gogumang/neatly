@@ -8,6 +8,16 @@ import { SceneTemplate } from "@/features/scene-templates/SceneTemplate";
 import { cx } from "@/shared/lib/cx";
 import styles from "./CardPreview.module.css";
 
+/** 같은 글자가 또 나와도 구분되게 시작 위치를 붙인다 */
+function withOffsets<T extends { text: string }>(parts: T[]) {
+  let at = 0;
+  return parts.map((part) => {
+    const here = at;
+    at += part.text.length;
+    return { at: here, part };
+  });
+}
+
 const STEP_MS = 1600;
 const MAX_SCENES = 4;
 
@@ -42,13 +52,13 @@ export function CardPreview({ talk }: { talk: Talk }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
           >
-            <SceneTemplate template={scene.template} author={talk.author} />
+            <SceneTemplate template={scene.template} author={talk.author} still />
           </motion.div>
         </AnimatePresence>
       </div>
       <p className={styles.subtitle}>
-        {parseEmphasis(scene.text).map((part, i) => (
-          <span key={`${i}-${part.text}`} className={part.em ? styles.em : undefined}>
+        {withOffsets(parseEmphasis(scene.text)).map(({ at, part }) => (
+          <span key={at} className={part.em ? styles.em : undefined}>
             {part.text}
           </span>
         ))}

@@ -23,8 +23,12 @@ export function useGenerateTalk(input: TalkInput, onError: (message: string) => 
         const { id, editKey } = await postJson<{ id: string; editKey: string }>("/api/talks", input);
         rememberEditKey(id, editKey);
         setProgress(1);
-        // 목소리가 실패해도 대본은 완성됐으니 나레이션으로 보낸다 (플레이어가 브라우저 음성으로 읽는다)
-        await postJson(`/api/talks/${id}/voice`).catch(() => undefined);
+        // 목소리·표지·수어 자막을 같이 만든다. 하나가 실패해도 대본은 완성됐으니 나레이션으로 보낸다
+        await Promise.all([
+          postJson(`/api/talks/${id}/voice`).catch(() => undefined),
+          postJson(`/api/talks/${id}/cover`).catch(() => undefined),
+          postJson(`/api/talks/${id}/sign`).catch(() => undefined),
+        ]);
         setProgress(2);
         setTimeout(() => router.replace(`/talks/${id}`), 700);
       } catch (e) {

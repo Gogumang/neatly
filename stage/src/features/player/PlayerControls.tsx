@@ -12,7 +12,7 @@ type Props = {
   go: (index: number) => void;
   toggle: () => void;
   toggleMute: () => void;
-  /** 수어 영상이 있는 나레이션만 */
+  /** 수어 어순 자막이 있는 나레이션만 */
   sign?: { on: boolean; toggle: () => void };
 };
 
@@ -41,7 +41,7 @@ export function PlayerControls({ talk, index, status, muted, go, toggle, toggleM
           {sign && (
             <IconButton
               icon="sign"
-              label={sign.on ? "수어 통역 끄기" : "수어 통역 켜기"}
+              label={sign.on ? "수어 어순 자막 끄기" : "수어 어순 자막 켜기"}
               aria-pressed={sign.on}
               className={sign.on ? styles.signOn : undefined}
               onClick={sign.toggle}

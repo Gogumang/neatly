@@ -53,10 +53,11 @@
 
 .spot {
   position: absolute;
-  top: -70px;
-  height: 180px;
-  background: radial-gradient(50% 50% at 50% 60%, var(--blue100) 0%, rgba(201, 226, 255, 0) 70%);
-  opacity: 0.8;
+  top: -40px;
+  height: 150px;
+  background: radial-gradient(60% 46% at 50% 22%, var(--blue100) 0%, rgba(201, 226, 255, 0) 78%);
+  filter: blur(10px);
+  opacity: 0.55;
 }
 
 @media (max-width: 760px) {

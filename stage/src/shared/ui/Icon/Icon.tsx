@@ -1,6 +1,8 @@
 // 선 아이콘 모음. 24x24 기준 path.
 const PATHS = {
   prev: "M7 6v12M18 6l-8 6 8 6V6z",
+  list: "M4 7h.01M4 12h.01M4 17h.01M9 7h11M9 12h11M9 17h11",
+  grid: "M9 4h11v11H9zM4 9h11v11H4z",
   next: "M17 6v12M6 6l8 6-8 6V6z",
   play: "M8 5v14l11-7z",
   pause: "M8 5h3v14H8zM13 5h3v14h-3z",
@@ -17,10 +19,13 @@ const FILLED = new Set<IconName>(["play", "pause"]);
 
 export type IconName = keyof typeof PATHS;
 
-export function Icon({ name, size = 20, filled }: { name: IconName; size?: number; filled?: boolean }) {
+type Props = { name: IconName; size?: number; filled?: boolean; className?: string };
+
+export function Icon({ name, size = 20, filled, className }: Props) {
   const fill = filled ?? FILLED.has(name);
   return (
     <svg
+      className={className}
       width={size}
       height={size}
       viewBox="0 0 24 24"

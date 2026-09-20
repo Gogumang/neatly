@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { DEMO_STEPS } from "./script";
 
-export const FLY_MS = 700; // 문장이 무대로 날아가는 시간
+export const FLY_MS = 420; // 문장이 무대로 건너가는 시간 (그동안 무대는 비어 있으니 짧게)
 export const HOLD_MS = 3200; // 장면을 보여주는 시간
 
 type Phase = "fly" | "scene";

@@ -23,8 +23,9 @@
   height: clamp(28px, 7cqw, 44px);
   border-radius: 14px;
   background: var(--grey100);
-  font-family: Tossface, var(--font);
-  font-size: clamp(14px, 3.4cqw, 22px);
+  color: var(--grey600);
+  font-size: clamp(12px, 2.8cqw, 18px);
+  font-weight: 700;
 }
 
 .body {

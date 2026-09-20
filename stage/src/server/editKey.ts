@@ -1,12 +1,5 @@
 import "server-only";
-import { randomBytes, timingSafeEqual } from "node:crypto";
+import { randomBytes } from "node:crypto";
 
+// 나레이션을 만든 브라우저를 나중에 알아보기 위한 열쇠. 만들 때 한 번 발급해 같이 저장한다
 export const newEditKey = () => randomBytes(24).toString("base64url");
-
-/** 수정 키가 맞는지. 길이·내용 비교에 걸리는 시간으로 키를 추측할 수 없게 한다 */
-export function matchesEditKey(expected: string | undefined, given: string | null): boolean {
-  if (!expected || !given) return false;
-  const a = Buffer.from(expected);
-  const b = Buffer.from(given);
-  return a.length === b.length && timingSafeEqual(a, b);
-}

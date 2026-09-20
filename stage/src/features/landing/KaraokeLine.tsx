@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { parseEmphasis } from "@/entities/talk/emphasis";
 import { cx } from "@/shared/lib/cx";
-import styles from "./Stage.module.css";
+import styles from "./KaraokeLine.module.css";
 import { type Cell, scatterVars, toWordGroups } from "./scatter";
 
 /** 목소리를 따라 글자가 차오르는 자막 (소개용 축소판). 처음엔 흩어졌던 글자가 제자리로 모인다 */
@@ -29,19 +29,26 @@ export function KaraokeLine({ text, durationMs, active }: { text: string; durati
 
   return (
     <>
-      {toWordGroups(cells).map((group) => (
-        <span key={group[0].i} className={group[0].ch === " " ? undefined : styles.word}>
-          {group.map((cell) => (
-            <span
-              key={cell.i}
-              className={cx(styles.ch, cell.em && styles.em, cell.i < filled && styles.sung)}
-              style={scatterVars(cell.i)}
-            >
-              {cell.ch}
-            </span>
-          ))}
-        </span>
-      ))}
+      {toWordGroups(cells).map((group) =>
+        // 띄어쓰기는 그대로 둔다 (여기서만 줄이 바뀐다)
+        group[0].ch === " " ? (
+          <span key={group[0].i} className={styles.space}>
+            {" "}
+          </span>
+        ) : (
+          <span key={group[0].i} className={styles.word}>
+            {group.map((cell) => (
+              <span
+                key={cell.i}
+                className={cx(styles.ch, cell.em && styles.em, cell.i < filled && styles.sung)}
+                style={scatterVars(cell.i)}
+              >
+                {cell.ch}
+              </span>
+            ))}
+          </span>
+        ),
+      )}
     </>
   );
 }

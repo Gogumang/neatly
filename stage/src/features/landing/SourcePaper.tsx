@@ -2,11 +2,11 @@
 
 import { motion } from "motion/react";
 import { cx } from "@/shared/lib/cx";
-import styles from "./Converter.module.css";
+import styles from "./SourcePaper.module.css";
 import { DEMO_STEPS } from "./script";
 import { TryInput } from "./TryInput";
 
-const BEAM = { duration: 0.7, ease: [0.16, 1, 0.3, 1] } as const;
+const BEAM = { duration: 0.45, ease: [0.16, 1, 0.3, 1] } as const;
 
 type Props = {
   step: number;
