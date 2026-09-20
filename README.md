@@ -6,7 +6,7 @@
 또박은 이미 써 둔 글 한 편을 붙여넣으면, 장면과 목소리가 있는 1분짜리 나레이션으로 바꿔 줍니다.
 결과는 영상 파일이 아니라 링크 하나라서, 그대로 공유하고 바로 재생할 수 있습니다.
 
-<https://neatly-xi.vercel.app>
+<https://ttobak.gogumang.com>
 
 ![메인 화면](docs/images/home.png)
 
