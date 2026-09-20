@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 또박
 
-## Getting Started
+**읽히지 않던 글을, 보고 듣는 나레이션으로.**
 
-First, run the development server:
+회고, README, 문제 해결 경험 — 공들여 쓴 글은 많지만 끝까지 읽히는 일은 드뭅니다.
+또박은 이미 써 둔 글 한 편을 붙여넣으면, 장면과 목소리가 있는 1분짜리 나레이션으로 바꿔 줍니다.
+결과는 영상 파일이 아니라 링크 하나라서, 그대로 공유하고 바로 재생할 수 있습니다.
+
+<https://neatly-xi.vercel.app>
+
+## 어떻게 쓰나요
+
+1. **종류 고르기** — 문제 해결 사례, 프로젝트 소개, 회고·후기, 기술 설명, 튜토리얼
+2. **글 붙여넣기** — 글을 그대로 넣거나, 블로그·깃허브 주소만 넣어도 본문과 이미지를 가져옵니다
+3. **길이와 목소리 고르기** — 짧게·보통·자세히, 목소리 여섯 가지 중에서
+4. **20초쯤 기다리기** — 대본, 장면, 목소리, 표지 그림이 한꺼번에 만들어집니다
+
+만들어진 나레이션은 링크로 공유되고, 모두의 나레이션 목록에서 서로 볼 수 있습니다.
+
+## 무엇이 만들어지나요
+
+- **장면** — 문장마다 어울리는 화면을 골라 붙입니다. 큰 제목, 올라가는 숫자, 키워드, 앱 화면, 대화, 발표자, 올린 사진
+- **목소리와 자막** — 장면마다 나레이션을 녹음하고, 말하는 속도에 맞춰 자막이 한 단어씩 차오릅니다
+- **표지 그림** — 제목을 읽고 무엇을 그릴지 정한 뒤, 그 장면을 그립니다. 글자는 넣지 않습니다
+- **화자 얼굴** — 사진을 올리지 않으면, 이야기를 들려주는 인물을 그려 넣습니다
+- **한국수어 어순 자막** — 문장을 한국수어의 어순과 어휘로 옮겨, 나레이션에 맞춰 한 단어씩 짚어 줍니다
+
+## 지켜야 할 것으로 삼은 것
+
+- **없는 숫자는 쓰지 않습니다.** 화면에 크게 뜨는 숫자가 원문에 없으면 그 장면을 다른 장면으로 바꿉니다
+- **읽는 사람에게 선택권을 줍니다.** 장면을 건너뛰거나, 소리를 끄거나, 전체 대본을 글로 훑어볼 수 있습니다
+- **수어는 통역 영상이 아닙니다.** 어순 자막이라고 분명히 밝히고, 농인 당사자 검증은 따로 진행합니다
+- **동작 줄이기를 켠 사람에게는** 움직임 없이 같은 내용을 보여 줍니다
+
+## 직접 돌려보려면
+
+`.env.example` 을 `.env.local` 로 복사해 키를 채우고 개발 서버를 실행하세요.
+저장소 설정은 `docs/deploy.md`, 데이터베이스 준비는 `supabase/schema.sql` 을 보면 됩니다.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
