@@ -6,7 +6,7 @@ npx vercel login
 ```
 
 ## 2. 프로젝트 연결 + 환경변수
-`stage/` 안에서:
+저장소 루트에서:
 ```
 npx vercel link
 npx vercel env add OPENAI_API_KEY production
