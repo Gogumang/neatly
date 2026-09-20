@@ -41,7 +41,7 @@ export function ThumbCard({
         {author && (
           <div style={{ display: "flex", alignItems: "center", gap: 10, paddingTop: 12 }}>
             <div style={{ fontSize: 28, fontWeight: 700, color: WHITE, letterSpacing: -0.4 }}>{author}</div>
-            {role && <div style={{ fontSize: 26, fontWeight: 500, color: DIM }}>· {role}</div>}
+            {role && <div style={{ fontSize: 26, fontWeight: 500, color: DIM }}>{`· ${role}`}</div>}
           </div>
         )}
       </div>
