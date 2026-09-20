@@ -21,6 +21,7 @@
 }
 
 .panel {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
@@ -32,7 +33,7 @@
   border-radius: var(--radius-l);
   background: var(--greyBackground);
   /* 그림은 3:2 로 받지만 조금 잘라 둔다. 그림 모델이 위아래에 남기는 띠를 덜어내기 위해서다 */
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 3 / 2;
 }
 
 .art {
@@ -42,26 +43,60 @@
   object-fit: cover;
 }
 
-/* 자막 말풍선. 그림 아래에 조금 겹쳐 얹어 한 칸으로 읽히게 한다 */
+/* 말풍선. 그림 위에 얹고 꼬리를 달아 인물이 말하는 것처럼 보이게 한다 */
 .caption {
-  position: relative;
+  position: absolute;
+  top: 20px;
+  left: 20px;
   z-index: 1;
-  margin: -12px 12px 0;
+  max-width: min(62%, 420px);
   padding: 14px 18px;
-  border: 1px solid var(--grey200);
-  border-radius: var(--radius-l);
-  background: var(--backgroundLevel1);
-  box-shadow: 0 6px 20px var(--greyOpacity100);
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 18%);
   color: var(--grey900);
   font-size: var(--t5);
   font-weight: 500;
-  line-height: 1.7;
+  line-height: 1.6;
   word-break: keep-all;
 }
 
-/* 그림이 없는 칸은 글자만 남기고, 겹침도 없앤다 */
+/* 말풍선 꼬리 */
+.caption::after {
+  position: absolute;
+  bottom: -10px;
+  left: 28px;
+  width: 22px;
+  height: 16px;
+  border-radius: 0 0 14px 0;
+  background: #ffffff;
+  clip-path: polygon(0 0, 100% 0, 18% 100%);
+  content: "";
+}
+
+/* 한 칸 건너 반대쪽에 놓아 눈이 지그재그로 따라가게 한다 */
+.panel:nth-child(even) .caption {
+  right: 20px;
+  left: auto;
+}
+
+.panel:nth-child(even) .caption::after {
+  right: 28px;
+  left: auto;
+  border-radius: 0 0 0 14px;
+  clip-path: polygon(0 0, 100% 0, 82% 100%);
+}
+
+/* 그림이 없는 칸은 글자만 남긴다 */
 .panel:not(:has(.frame)) .caption {
-  margin: 0;
+  position: static;
+  max-width: none;
+  border: 1px solid var(--grey200);
+  box-shadow: none;
+}
+
+.panel:not(:has(.frame)) .caption::after {
+  display: none;
 }
 
 .em {

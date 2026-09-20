@@ -21,7 +21,7 @@ describe("coverPrompt", () => {
   });
 
   it("사진이 아니라 그림으로 그리게 한다", () => {
-    expect(coverPrompt(talk, scene)).toContain("사진이 아니라 그림임이 한눈에 보이게 한다");
+    expect(coverPrompt(talk, scene)).toContain("사진이 아니라 그림이다");
   });
 
   it("장르마다 색이 다르다", () => {

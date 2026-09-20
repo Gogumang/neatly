@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="또박">
+  <title>또박</title>
+  <!-- 키보드 키캡: 아래 몸통과 위 눌리는 면 -->
+  <rect x="2" y="3" width="28" height="27" rx="7" fill="#1B64DA" />
+  <rect x="4" y="3" width="24" height="22" rx="6" fill="#3182F6" />
+  <rect x="6.5" y="5.5" width="19" height="16" rx="4.5" fill="#5B9BFF" />
+  <!-- 누르면 이야기가 재생된다는 뜻의 삼각형 -->
+  <path d="M14 10.2 L20.4 13.5 L14 16.8 Z" fill="#FFFFFF" />
+</svg>
