@@ -43,3 +43,9 @@ next-env.d.ts
 # local store
 /.data
 !.env.example
+
+# 원티드 제출용 자료 (저장소에 올리지 않는다)
+/제출용
+
+# 에디터 설정
+/.idea

@@ -14,9 +14,12 @@ export type { StoredTalk } from "./talks/repo";
 
 const repo = supabaseEnabled ? supabaseRepo : dbEnabled ? postgresRepo : localRepo;
 
-/** 화면에 넘겨도 되는 부분만 */
-export function toPublicTalk({ editKey: _secret, ...talk }: StoredTalk): Omit<StoredTalk, "editKey"> {
-  return talk;
+/** 화면에 넘겨도 되는 부분만 (수정 키와 비밀번호는 절대 내보내지 않는다) */
+export type PublicTalk = Omit<StoredTalk, "editKey" | "pass">;
+
+export function toPublicTalk(talk: StoredTalk): PublicTalk {
+  const { editKey: _key, pass: _pass, ...rest } = talk;
+  return rest;
 }
 
 export const saveTalk = (talk: StoredTalk) => repo.save(talk);

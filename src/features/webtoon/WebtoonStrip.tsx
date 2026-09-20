@@ -2,6 +2,7 @@
 
 import { MotionConfig } from "motion/react";
 import type { Talk } from "@/entities/talk/model";
+import { CopyButton } from "@/shared/ui/CopyButton/CopyButton";
 import { Top } from "@/shared/ui/Top/Top";
 import { WebtoonPanel } from "./WebtoonPanel";
 import styles from "./WebtoonStrip.module.css";
@@ -17,15 +18,11 @@ export function WebtoonStrip({ talk }: { talk: Talk }) {
     <MotionConfig reducedMotion="user">
       <main className={styles.strip}>
         <Top
-          upper={
-            <span className={styles.upper}>
-              웹툰 · {author.name}
-              {author.role ? ` · ${author.role}` : ""}
-            </span>
-          }
+          upper={<span className={styles.upper}>{["웹툰", author.name, author.role].filter(Boolean).join(" · ")}</span>}
           title={talk.title}
           lower={talk.summary || undefined}
         />
+        <CopyButton className={styles.copy} />
         <ol className={styles.panels}>
           {talk.segments.map((segment, i) => (
             <WebtoonPanel key={segment.id} segment={segment} n={i + 1} />

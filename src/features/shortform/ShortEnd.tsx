@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Button, ButtonLink } from "@/shared/ui/Button/Button";
+import { CopyButton } from "@/shared/ui/CopyButton/CopyButton";
 import { Icon } from "@/shared/ui/Icon/Icon";
 import styles from "./ShortEnd.module.css";
 
@@ -23,6 +24,7 @@ export function ShortEnd({ title, onReplay }: { title: string; onReplay: () => v
         <ButtonLink href="/new" color="light" size="large" display="full">
           내 글로 만들어보기
         </ButtonLink>
+        <CopyButton />
       </div>
     </motion.div>
   );

@@ -13,10 +13,11 @@ import { PhotosStep } from "./PhotosStep";
 import { StoryStep } from "./StoryStep";
 import { SubjectStep } from "./SubjectStep";
 import { useMemoryFunnel } from "./useMemoryFunnel";
+import { VisibilityStep } from "./VisibilityStep";
 import { VoiceStep } from "./VoiceStep";
 
 /**
- * 만들기 퍼널: 형식 → 종류 → 제목 → 이야기 → 길이 → 사진 → 목소리 → 생성.
+ * 만들기 퍼널: 형식 → 종류 → 제목 → 이야기 → 길이 → 사진 → 공개 범위 → 목소리 → 생성.
  * 웹툰은 목소리를 쓰지 않으니 그 단계를 건너뛴다. 브라우저 뒤로가기로 단계를 오간다.
  */
 export function CreateTalk() {
@@ -60,11 +61,18 @@ export function CreateTalk() {
         photos={({ context, history }) => (
           <PhotosStep
             defaultValue={context}
-            onNext={(photos) =>
+            onNext={(photos) => history.push("visibility", { ...context, ...photos })}
+          />
+        )}
+        visibility={({ context, history }) => (
+          <VisibilityStep
+            defaultValue={context.visibility}
+            defaultPassword={context.password}
+            onNext={(access) =>
               // 웹툰은 목소리가 없다
               context.format === "webtoon"
-                ? history.push("generate", { ...context, ...photos, voice: DEFAULT_VOICE })
-                : history.push("voice", { ...context, ...photos })
+                ? history.push("generate", { ...context, ...access, voice: DEFAULT_VOICE })
+                : history.push("voice", { ...context, ...access })
             }
           />
         )}

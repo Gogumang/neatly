@@ -33,3 +33,16 @@
 .next:hover {
   color: var(--grey800);
 }
+
+/* 재생 버튼과 링크 복사를 나란히 */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 520px) {
+  .actions {
+    flex-direction: column;
+  }
+}

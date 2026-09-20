@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import type { Talk } from "@/entities/talk/model";
 import { Button } from "@/shared/ui/Button/Button";
+import { CopyButton } from "@/shared/ui/CopyButton/CopyButton";
 import { Icon } from "@/shared/ui/Icon/Icon";
 import { Top } from "@/shared/ui/Top/Top";
 import styles from "./PlayerCover.module.css";
@@ -29,10 +30,13 @@ export function PlayerCover({ talk, ended, onPlay }: { talk: Talk; ended: boolea
           upper={<span className={styles.author}>{talk.author.name}</span>}
           title={talk.title}
         />
-        <Button size="xlarge" onClick={onPlay}>
-          <Icon name={ended ? "replay" : "play"} size={18} />
-          {ended ? "다시 보기" : "나레이션 보기"}
-        </Button>
+        <span className={styles.actions}>
+          <Button size="xlarge" onClick={onPlay}>
+            <Icon name={ended ? "replay" : "play"} size={18} />
+            {ended ? "다시 보기" : "나레이션 보기"}
+          </Button>
+          <CopyButton />
+        </span>
         {ended && (
           <Link href="/new" className={styles.next}>
             나도 나레이션 만들기 ›

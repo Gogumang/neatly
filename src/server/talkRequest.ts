@@ -2,10 +2,12 @@ import "server-only";
 import { DEFAULT_FORMAT, isFormatId } from "@/entities/talk/formats";
 import { DEFAULT_GENRE, isGenreId } from "@/entities/talk/genres";
 import { DEFAULT_LENGTH, isLengthId } from "@/entities/talk/lengths";
+import { DEFAULT_VISIBILITY, isPassword, isVisibilityId } from "@/entities/talk/visibility";
 import { isVoiceId, type VoiceId } from "@/entities/talk/voices";
 import { isLink } from "@/shared/lib/isLink";
 import { importLink } from "./link/importLink";
 import type { ScriptInput } from "./script/writeScript";
+import { hashPassword } from "./talkPass";
 import { isUploadUrl } from "./uploads";
 
 const MAX_IMAGES = 6;
@@ -20,6 +22,8 @@ type Body = {
   avatarUrl?: unknown;
   imageUrls?: unknown;
   voice?: unknown;
+  visibility?: unknown;
+  password?: unknown;
 };
 
 export class InputError extends Error {}
@@ -37,8 +41,19 @@ async function readStory(body: Body | null) {
   return story;
 }
 
+/** 공개 범위. 비공개는 비밀번호를 그 자리에서 해시로 바꾼다 (평문은 저장하지 않는다) */
+function readVisibility(body: Body | null) {
+  const visibility = isVisibilityId(body?.visibility) ? body.visibility : DEFAULT_VISIBILITY;
+  if (visibility !== "private") return { visibility };
+  const password = typeof body?.password === "string" ? body.password : "";
+  if (!isPassword(password)) throw new InputError("비밀번호는 4~20자로 적어주세요");
+  return { visibility, pass: hashPassword(password) };
+}
+
 export async function readTalkRequest(body: Body | null): Promise<{ input: ScriptInput; voice?: VoiceId }> {
   const uploaded = Array.isArray(body?.imageUrls) ? body.imageUrls.filter(isUploadUrl) : [];
+  // 링크를 읽어오기 전에 공개 범위부터 확인한다 (잘못 적었으면 바로 돌려보낸다)
+  const access = readVisibility(body);
   const fromLink = await readStory(body);
 
   const subject = typeof body?.subject === "string" ? body.subject.trim().slice(0, 40) : "";
@@ -54,6 +69,7 @@ export async function readTalkRequest(body: Body | null): Promise<{ input: Scrip
       authorName,
       avatarUrl: isUploadUrl(body?.avatarUrl) ? body.avatarUrl : undefined,
       imageUrls: [...uploaded, ...fromLink.imageUrls].slice(0, MAX_IMAGES),
+      ...access,
     },
     voice: isVoiceId(body?.voice) ? body.voice : undefined,
   };

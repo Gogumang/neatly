@@ -106,3 +106,9 @@
     margin: -12px 8px 0;
   }
 }
+
+/* 링크 복사 (머리말 아래) */
+.copy {
+  align-self: center;
+  margin-top: 20px;
+}

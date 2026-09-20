@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   metadataBase: siteUrl,
   ...shareMetadata({
     title: "또박 — 글을 붙여넣으면 나레이션이 시작돼요",
-    description: "AI로 문제를 해결한 이야기를 나레이션 나레이션으로 바꿔드려요",
+    description: "읽히지 않던 글을, 보고 듣는 나레이션으로 바꿔드려요",
   }),
 };
 

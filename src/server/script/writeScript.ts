@@ -13,6 +13,10 @@ import { type RawTalk, talkSchema } from "./schema";
 export type ScriptInput = {
   /** 보여 주는 방식 (FormatId) */
   format: string;
+  /** 누가 볼 수 있나 (VisibilityId) */
+  visibility?: Talk["visibility"];
+  /** 비밀번호 잠금 (해시). 브라우저로 내보내면 안 된다 */
+  pass?: Talk["pass"];
   genre: GenreId;
   length: LengthId;
   text: string;
@@ -67,6 +71,8 @@ export async function writeScript(input: ScriptInput): Promise<Omit<Talk, "id">>
     summary: raw.summary,
     genre: input.genre,
     format: input.format,
+    visibility: input.visibility,
+    pass: input.pass,
     author: { name: input.authorName ?? "", avatarUrl: input.avatarUrl },
     segments: toSegments(raw, { images: input.imageUrls, hasAvatar: Boolean(input.avatarUrl), source }),
   };

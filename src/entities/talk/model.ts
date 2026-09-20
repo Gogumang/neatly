@@ -55,6 +55,10 @@ export type Talk = {
   genre?: string;
   /** 보여 주는 방식 (FormatId): 나레이션·수어·웹툰·숏폼 */
   format?: string;
+  /** 누가 볼 수 있나 (VisibilityId). 없으면 공개 */
+  visibility?: "public" | "private";
+  /** 비공개 나레이션의 비밀번호. 서버에만 둔다 — 브라우저로 내보내면 안 된다 */
+  pass?: { salt: string; hash: string };
   title: string;
   summary: string;
   author: { name: string; role?: string; avatarUrl?: string };
